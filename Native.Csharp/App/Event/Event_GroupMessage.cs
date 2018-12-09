@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Native.Csharp.App.Model;
+using BackRunner.QQBot;
 
 namespace Native.Csharp.App.Event
 {
@@ -39,20 +40,45 @@ namespace Native.Csharp.App.Event
 		/// <param name="e">附加的参数</param>
 		public void ReceiveGroupMessage(object sender, GroupMessageEventArgs e)
 		{
-			//本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
-			//这里处理消息
-			if (e.FromAnonymous != null)    //如果此属性不为null, 则消息来自于匿名成员
-			{
-				EnApi.Instance.SendGroupMessage(e.FromGroup, e.FromAnonymous.CodeName + " 你发送了这样的消息: " + e.Msg);
-				e.Handled = true;
-				return;
-			}
+            //本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
+            //这里处理消息
+            if (e.Msg.Contains(BotConfig.AtBotName))
+            {
+                if (e.FromAnonymous != null)    //如果此属性不为null, 则消息来自于匿名成员
+                {
+                    //匿名消息处理示例
+                    //EnApi.Instance.SendGroupMessage(e.FromGroup, e.FromAnonymous.CodeName + " 你发送了这样的消息: " + e.Msg);
 
+                    //匿名消息处理
+                    ProcessGroupMessage(e, true);
 
-			EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.FromQQ) + "你发送了这样的消息: " + e.Msg);
+                    e.Handled = true;
+                    return;
+                }
+                else
+                {
+                    //非匿名消息处理示例
+                    //EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.FromQQ) + "你发送了这样的消息: " + e.Msg);
 
-			e.Handled = true;   //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+                    //非匿名消息处理
+                    ProcessGroupMessage(e, false);
+                    e.Handled = true;
+                    return;
+                }
+            } else
+            {
+                e.Handled = false;
+                return;
+            }
 		}
+
+        /// <summary>
+		/// 处理群消息
+		/// </summary>
+        private void ProcessGroupMessage(GroupMessageEventArgs e, bool isAnnoymous)
+        {
+
+        }
 
 		/// <summary>
 		/// Type=11 群文件上传事件
@@ -77,12 +103,10 @@ namespace Native.Csharp.App.Event
 		/// <param name="e">附加的参数</param>
 		public void ReceiveGroupManageIncrease(object sender, GroupManageAlterEventArgs e)
 		{
-			//本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
-			//这里处理消息
+            //本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
+            //这里处理消息            
 
-
-
-			e.Handled = false;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+            e.Handled = false;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -96,7 +120,6 @@ namespace Native.Csharp.App.Event
 			//这里处理消息
 
 
-
 			e.Handled = false;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
 		}
 
@@ -107,12 +130,16 @@ namespace Native.Csharp.App.Event
 		/// <param name="e">附加的参数</param>
 		public void ReceiveGroupMemberJoin(object sender, GroupMemberAlterEventArgs e)
 		{
-			//本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
-			//这里处理消息
+            //本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
+            //这里处理消息
 
+            //发送入群欢迎消息
+            if (e.BeingOperateQQ != BotConfig.BotQQ)
+            {
+                EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.BeingOperateQQ) + BotConfig.WelcomeMsg);
+            }            
 
-
-			e.Handled = false;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+            e.Handled = true;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>
@@ -122,12 +149,16 @@ namespace Native.Csharp.App.Event
 		/// <param name="e">附加的参数</param>
 		public void ReceiveGroupMemberInvitee(object sender, GroupMemberAlterEventArgs e)
 		{
-			//本子程序会在酷Q【线程】中被调用, 请注意使用对象等需要初始化(ConIntialize, CoUninitialize).
-			//这里处理消息
+            //本子程序会在酷Q【线程】中被调用, 请注意使用对象等需要初始化(ConIntialize, CoUninitialize).
+            //这里处理消息
 
+            //发送入群欢迎消息
+            if (e.BeingOperateQQ != BotConfig.BotQQ)
+            {
+                EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.BeingOperateQQ) + BotConfig.WelcomeMsg);
+            }
 
-
-			e.Handled = false;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+            e.Handled = true;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
 		}
 
 		/// <summary>

@@ -11,7 +11,7 @@ namespace Native.Csharp.UI.ViewModels
 	public class MainViewModel : NotificationObject
 	{
 		#region --字段--
-		private string _windowTitle = "酷Q样例应用控制台";
+		private string _windowTitle = "空格二号机 - 控制台";
 		#endregion
 
 		#region --数据属性--

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Native.Csharp</RootNamespace>
-    <AssemblyName>Native.Csharp</AssemblyName>
+    <AssemblyName>top.backrunner.qqbot</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>G:\Tools\CQP Air\app\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,8 +37,7 @@
     <DllExportMetaLibName>DllExport.dll</DllExportMetaLibName>
     <DllExportNamespace>Native.Csharp</DllExportNamespace>
     <DllExportDDNSCecil>true</DllExportDDNSCecil>
-    <DllExportSkipOnAnyCpu>false</DllExportSkipOnAnyCpu>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DllExportOrdinalsBase>1</DllExportOrdinalsBase>
     <DllExportGenExpLib>false</DllExportGenExpLib>
     <DllExportOurILAsm>false</DllExportOurILAsm>
@@ -53,6 +52,11 @@
     </Reference>
     <Reference Include="DllExport">
       <HintPath>..\packages\DllExport.1.6.1\gcache\metalib\Native.Csharp\DllExport.dll</HintPath>
+    </Reference>
+    <Reference Include="DllExport, PublicKeyToken=8337224c9ad9e356">
+      <HintPath>$(SolutionDir)packages\DllExport.1.6.1\gcache\metalib\$(DllExportNamespace)\$(DllExportMetaLibName)</HintPath>
+      <Private>False</Private>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -86,6 +90,7 @@
     <Compile Include="App\Model\GroupMemberAlterEventArgs.cs" />
     <Compile Include="App\Model\GroupMessageEventArgs.cs" />
     <Compile Include="App\Model\PrivateMessageEventArgs.cs" />
+    <Compile Include="App\QQBot\BotConfig.cs" />
     <Compile Include="Sdk.Cqp\Api\EnApi.cs" />
     <Compile Include="Sdk.Cqp\Common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,7 +122,7 @@
     <Compile Include="Sdk.Cqp\Tool\IniFile.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Native.Csharp.json">
+    <None Include="top.backrunner.qqbot.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="FodyWeavers.xml" />

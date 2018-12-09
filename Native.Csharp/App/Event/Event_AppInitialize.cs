@@ -40,7 +40,7 @@ namespace Native.Csharp.App.Event
 		public void AppInfo(object sender, AppInfoEventArgs e)
 		{
 			e.ApiVer = 9;                   //Api版本
-			e.AppId = "top.jiegg.demo";     //AppId
+			e.AppId = "top.backrunner.qqbot";     //AppId
 											//本函数【禁止】处理其他任何代码，以免发生异常情况。如需执行初始化代码请在Startup事件中执行（Type = 1001）。
 		}
 
