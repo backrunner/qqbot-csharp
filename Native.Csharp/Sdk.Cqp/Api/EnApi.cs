@@ -389,7 +389,6 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			member.CanModifiedCard = unpack.GetInt32() == 1;
 			#endregion
 			return 0;
-
 		}
 		/// <summary>
 		/// 获取群成员列表
@@ -546,7 +545,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			{
 				time = new TimeSpan(0);
 			}
-			return LibImport.CQ_setGroupAnonymousBan(Common.AuthCode, groupId, anonymous, time.Seconds);
+			return LibImport.CQ_setGroupAnonymousBan(Common.AuthCode, groupId, anonymous, (long)time.TotalSeconds);
 
 		}
 		/// <summary>
@@ -562,7 +561,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			{
 				time = TimeSpan.Zero;
 			}
-			return LibImport.CQ_setGroupBan(Common.AuthCode, groupId, qqId, time.Seconds);
+			return LibImport.CQ_setGroupBan(Common.AuthCode, groupId, qqId, (long)time.TotalSeconds);
 		}
 		/// <summary>
 		/// 置全群禁言
@@ -599,7 +598,7 @@ namespace Native.Csharp.Sdk.Cqp.Api
 			{
 				time = new TimeSpan(-10000000);
 			}
-			return LibImport.CQ_setGroupSpecialTitle(Common.AuthCode, groupId, qqId, specialTitle, time.Seconds);
+			return LibImport.CQ_setGroupSpecialTitle(Common.AuthCode, groupId, qqId, specialTitle, (long)time.TotalSeconds);
 		}
 		/// <summary>
 		/// 置群管理员

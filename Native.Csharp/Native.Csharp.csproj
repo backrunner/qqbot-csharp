@@ -91,6 +91,7 @@
     <Compile Include="App\Model\GroupMessageEventArgs.cs" />
     <Compile Include="App\Model\PrivateMessageEventArgs.cs" />
     <Compile Include="App\QQBot\BotConfig.cs" />
+    <Compile Include="App\QQBot\Utils\ChineseNumberConverter.cs" />
     <Compile Include="Sdk.Cqp\Api\EnApi.cs" />
     <Compile Include="Sdk.Cqp\Common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
