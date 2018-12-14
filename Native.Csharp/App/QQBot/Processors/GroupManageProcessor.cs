@@ -25,6 +25,7 @@ namespace BackRunner.QQBot.Processors
                 int day = 0;
                 int hour = 0;
                 int minute = 0;
+                int second = 0;
 
                 if (e.Msg.Contains("天"))
                 {
@@ -66,10 +67,23 @@ namespace BackRunner.QQBot.Processors
                         minute = Convert.ToInt32(_minute.ToString());
                     }
                 }
-
-                if (day > 0 || hour > 0 || minute > 0)
+                if (e.Msg.Contains("秒"))
                 {
-                    TimeSpan banTime = new TimeSpan(0, 0, minute * 60 + hour * 3600 + day * 86400);
+                    Match _second = Regex.Match(e.Msg, @"([\u4e00-\u9fa5]+)(?=秒)");
+                    if (_second.Length > 0)
+                    {
+                        second = ChineseNumberConverter.Convert2Number(_second.ToString());
+                    }
+                    else
+                    {
+                        _second = Regex.Match(e.Msg, @"([0-9]+)(?=秒)");
+                        second = Convert.ToInt32(_second.ToString());
+                    }
+                }
+
+                if (day > 0 || hour > 0 || minute > 0 || second>0)
+                {
+                    TimeSpan banTime = new TimeSpan(0, 0, second+minute * 60 + hour * 3600 + day * 86400);
 
                     //封禁
                     string operatedMessage = "";
@@ -80,7 +94,9 @@ namespace BackRunner.QQBot.Processors
                         EnApi.Instance.SetGroupBanSpeak(e.FromGroup, operatedQQ, banTime);
                     }
 
-                    EnApi.Instance.SendGroupMessage(e.FromGroup, operatedMessage + "已被禁言");
+                    EnApi.Instance.SendGroupMessage(e.FromGroup, operatedMessage + "已被禁言" + (day>0?day.ToString()+"天":"")
+                        + (hour > 0 ? hour.ToString() + "小时" : "") + (minute > 0 ? minute.ToString() + "分钟" : "") +
+                        (second > 0 ? second.ToString() + "秒" : ""));
                 }
                 else
                 {
