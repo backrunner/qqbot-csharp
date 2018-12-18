@@ -77,6 +77,17 @@ namespace Native.Csharp.App.Event
                     return;
                 }
             }
+            else
+            {
+                //普通消息
+                //将多余的空格过滤掉
+                e.Msg = e.Msg.Trim();
+
+                //交由复读处理器处理消息
+                RepeatProcessor.Process(e);
+
+                e.Handled = true;
+            }
         }
 
         /// <summary>
