@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BackRunner.QQBot.BotConsole;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +24,10 @@ namespace Native.Csharp.App
 		/// 程序共用的Random实例
 		/// </summary>
         public static Random Random { get; set; }
+
+        /// <summary>
+		/// 插件内共用的静态控制台窗体
+		/// </summary>
+        public static ConsoleWindow ConsoleWindow { get; set; }
 	}
 }

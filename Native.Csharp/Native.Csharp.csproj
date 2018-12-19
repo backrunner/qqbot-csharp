@@ -23,6 +23,7 @@
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -62,6 +63,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -128,9 +130,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Native.Csharp.UI\Native.Csharp.UI.csproj">
-      <Project>{85216e2e-ecbb-466c-9f26-b55e8f78bc7a}</Project>
-      <Name>Native.Csharp.UI</Name>
+    <ProjectReference Include="..\BotConsole\BotConsole.csproj">
+      <Project>{92552c82-e0da-4017-8d26-3d867c3537fa}</Project>
+      <Name>BotConsole</Name>
     </ProjectReference>
     <ProjectReference Include="..\Navite.Csharp.Tool\Navite.Csharp.Tool.csproj">
       <Project>{9db94cbf-6843-4ea3-9241-769124416fe9}</Project>

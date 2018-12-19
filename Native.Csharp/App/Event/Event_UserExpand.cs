@@ -1,9 +1,9 @@
 ﻿using Native.Csharp.Sdk.Cqp.Api;
-using Native.Csharp.UI.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BackRunner.QQBot.BotConsole;
 
 namespace Native.Csharp.App.Event
 {
@@ -38,9 +38,10 @@ namespace Native.Csharp.App.Event
 		/// <param name="e">附加的参数</param>
 		public void OpenConsoleWindow(object sender, EventArgs e)
 		{
-			//本事件将会在酷Q【主线程】中被触发, 请注意线程以免卡住酷Q
+            //本事件将会在酷Q【主线程】中被触发, 请注意线程以免卡住酷Q
 
-			new MainView().Show();	//直接加载控制台项目的窗口, WinForm窗口也是如此.
+            Common.ConsoleWindow = new ConsoleWindow(); //直接加载控制台项目的窗口, WinForm窗口也是如此.
+            Common.ConsoleWindow.Show();
 		}
 		#endregion
 	}

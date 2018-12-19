@@ -7,10 +7,16 @@
 		xmlns:vm="clr-namespace:Native.Csharp.UI.ViewModels"
         mc:Ignorable="d"
         Title="{Binding WindowTitle, StringFormat={}{0}}" Height="450" Width="800">
-	<Window.DataContext>
-		<vm:MainViewModel/>
-	</Window.DataContext>
-	<Grid>
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <TabControl>
+            <TabItem Header="设置">
+                <Grid Background="Transparent"/>
+            </TabItem>
 
-	</Grid>
+        </TabControl>
+
+    </Grid>
 </Window>
