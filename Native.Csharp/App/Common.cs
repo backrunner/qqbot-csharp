@@ -18,5 +18,10 @@ namespace Native.Csharp.App
 		/// 获取或设置当前 App 是否处于运行状态
 		/// </summary>
 		public static bool IsRunning { get; set; }
+
+        /// <summary>
+		/// 程序共用的Random实例
+		/// </summary>
+        public static Random Random { get; set; }
 	}
 }

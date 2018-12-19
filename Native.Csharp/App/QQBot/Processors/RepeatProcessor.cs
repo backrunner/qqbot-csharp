@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Native.Csharp.App;
 
 namespace BackRunner.QQBot.Processors
 {
@@ -34,7 +35,7 @@ namespace BackRunner.QQBot.Processors
                     {
                         gm.RepeatCount++;   //复读计数器递增
                         gm.FromQQ = e.FromQQ;   //更新QQ
-                        if (gm.RepeatCount >= 3)
+                        if (gm.RepeatCount >= Common.Random.Next(2,5))
                         {
                             //当复读次数达到三次的时候进行复读
                             EnApi.Instance.SendGroupMessage(e.FromGroup, e.Msg);

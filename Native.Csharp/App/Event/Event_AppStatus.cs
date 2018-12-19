@@ -76,6 +76,8 @@ namespace Native.Csharp.App.Event
 
             //初始化BotQQ
             BotConfig.SetBotQQ(EnApi.Instance.GetLoginQQ());
+            //初始化random
+            Common.Random = new Random();
 		}
 
 		/// <summary>
@@ -89,8 +91,6 @@ namespace Native.Csharp.App.Event
 			//如果酷Q载入时应用已被停用，则本函数【不会】被调用。
 			//无论本应用是否被启用，酷Q关闭前本函数都【不会】被调用。
 			Common.IsRunning = false;
-
-
 		}
 		#endregion
 	}
