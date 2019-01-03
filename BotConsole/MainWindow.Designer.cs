@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
             this.gb_switches = new System.Windows.Forms.GroupBox();
+            this.cb_autoAgreePersonal = new System.Windows.Forms.CheckBox();
+            this.lbl_personalSwitches = new System.Windows.Forms.Label();
             this.lbl_groupSwitches = new System.Windows.Forms.Label();
             this.cb_autoRepeat = new System.Windows.Forms.CheckBox();
             this.cb_autoAgreeGroup = new System.Windows.Forms.CheckBox();
             this.cb_welcomeMsg = new System.Windows.Forms.CheckBox();
             this.gb_sensitiveWords = new System.Windows.Forms.GroupBox();
+            this.lbl_newSensitiveWord = new System.Windows.Forms.Label();
             this.btn_delSensitiveWord = new System.Windows.Forms.Button();
             this.btn_addSensitiveWord = new System.Windows.Forms.Button();
             this.tb_newSensitiveWord = new System.Windows.Forms.TextBox();
@@ -43,28 +46,25 @@
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_reset = new System.Windows.Forms.Button();
-            this.lbl_newSensitiveWord = new System.Windows.Forms.Label();
             this.gb_basic = new System.Windows.Forms.GroupBox();
-            this.lbl_botQQ = new System.Windows.Forms.Label();
             this.tb_botQQ = new System.Windows.Forms.TextBox();
+            this.lbl_botQQ = new System.Windows.Forms.Label();
             this.gb_msgSettings = new System.Windows.Forms.GroupBox();
-            this.lbl_newFriendMsg = new System.Windows.Forms.Label();
-            this.tb_newFriendMsg = new System.Windows.Forms.TextBox();
             this.tb_groupWelcomeMsg = new System.Windows.Forms.TextBox();
             this.lbl_groupWelcomeMsg = new System.Windows.Forms.Label();
-            this.lbl_personalSwitches = new System.Windows.Forms.Label();
-            this.cb_autoAgreePersonal = new System.Windows.Forms.CheckBox();
+            this.tb_newFriendMsg = new System.Windows.Forms.TextBox();
+            this.lbl_newFriendMsg = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cb_webApiEnable = new System.Windows.Forms.CheckBox();
-            this.tb_webApi = new System.Windows.Forms.TextBox();
-            this.lbl_webApi = new System.Windows.Forms.Label();
-            this.tb_webApiKey = new System.Windows.Forms.TextBox();
-            this.lbl_webApiKey = new System.Windows.Forms.Label();
+            this.lbl_webApiConfig = new System.Windows.Forms.Label();
+            this.btn_webApiTest = new System.Windows.Forms.Button();
+            this.rb_webApiConfig = new System.Windows.Forms.RichTextBox();
             this.tb_webApiSecret = new System.Windows.Forms.TextBox();
             this.lbl_webApiSecret = new System.Windows.Forms.Label();
-            this.rb_webApiConfig = new System.Windows.Forms.RichTextBox();
-            this.btn_webApiTest = new System.Windows.Forms.Button();
-            this.lbl_webApiConfig = new System.Windows.Forms.Label();
+            this.tb_webApiKey = new System.Windows.Forms.TextBox();
+            this.lbl_webApiKey = new System.Windows.Forms.Label();
+            this.tb_webApi = new System.Windows.Forms.TextBox();
+            this.lbl_webApi = new System.Windows.Forms.Label();
+            this.cb_webApiEnable = new System.Windows.Forms.CheckBox();
             this.gb_switches.SuspendLayout();
             this.gb_sensitiveWords.SuspendLayout();
             this.gb_operation.SuspendLayout();
@@ -87,6 +87,26 @@
             this.gb_switches.TabIndex = 0;
             this.gb_switches.TabStop = false;
             this.gb_switches.Text = "开关";
+            // 
+            // cb_autoAgreePersonal
+            // 
+            this.cb_autoAgreePersonal.AutoSize = true;
+            this.cb_autoAgreePersonal.Location = new System.Drawing.Point(10, 159);
+            this.cb_autoAgreePersonal.Name = "cb_autoAgreePersonal";
+            this.cb_autoAgreePersonal.Size = new System.Drawing.Size(108, 16);
+            this.cb_autoAgreePersonal.TabIndex = 5;
+            this.cb_autoAgreePersonal.Text = "自动同意加好友";
+            this.cb_autoAgreePersonal.UseVisualStyleBackColor = true;
+            // 
+            // lbl_personalSwitches
+            // 
+            this.lbl_personalSwitches.AutoSize = true;
+            this.lbl_personalSwitches.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_personalSwitches.Location = new System.Drawing.Point(8, 137);
+            this.lbl_personalSwitches.Name = "lbl_personalSwitches";
+            this.lbl_personalSwitches.Size = new System.Drawing.Size(53, 12);
+            this.lbl_personalSwitches.TabIndex = 4;
+            this.lbl_personalSwitches.Text = "个人相关";
             // 
             // lbl_groupSwitches
             // 
@@ -141,6 +161,16 @@
             this.gb_sensitiveWords.TabIndex = 1;
             this.gb_sensitiveWords.TabStop = false;
             this.gb_sensitiveWords.Text = "屏蔽词";
+            // 
+            // lbl_newSensitiveWord
+            // 
+            this.lbl_newSensitiveWord.AutoSize = true;
+            this.lbl_newSensitiveWord.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_newSensitiveWord.Location = new System.Drawing.Point(159, 322);
+            this.lbl_newSensitiveWord.Name = "lbl_newSensitiveWord";
+            this.lbl_newSensitiveWord.Size = new System.Drawing.Size(53, 12);
+            this.lbl_newSensitiveWord.TabIndex = 5;
+            this.lbl_newSensitiveWord.Text = "新屏蔽词";
             // 
             // btn_delSensitiveWord
             // 
@@ -226,16 +256,6 @@
             this.btn_reset.Text = "重置";
             this.btn_reset.UseVisualStyleBackColor = true;
             // 
-            // lbl_newSensitiveWord
-            // 
-            this.lbl_newSensitiveWord.AutoSize = true;
-            this.lbl_newSensitiveWord.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_newSensitiveWord.Location = new System.Drawing.Point(159, 322);
-            this.lbl_newSensitiveWord.Name = "lbl_newSensitiveWord";
-            this.lbl_newSensitiveWord.Size = new System.Drawing.Size(53, 12);
-            this.lbl_newSensitiveWord.TabIndex = 5;
-            this.lbl_newSensitiveWord.Text = "新屏蔽词";
-            // 
             // gb_basic
             // 
             this.gb_basic.Controls.Add(this.tb_botQQ);
@@ -247,6 +267,14 @@
             this.gb_basic.TabStop = false;
             this.gb_basic.Text = "基本设置";
             // 
+            // tb_botQQ
+            // 
+            this.tb_botQQ.Location = new System.Drawing.Point(77, 20);
+            this.tb_botQQ.Name = "tb_botQQ";
+            this.tb_botQQ.ReadOnly = true;
+            this.tb_botQQ.Size = new System.Drawing.Size(252, 21);
+            this.tb_botQQ.TabIndex = 1;
+            // 
             // lbl_botQQ
             // 
             this.lbl_botQQ.AutoSize = true;
@@ -255,14 +283,6 @@
             this.lbl_botQQ.Size = new System.Drawing.Size(65, 12);
             this.lbl_botQQ.TabIndex = 0;
             this.lbl_botQQ.Text = "机器人QQ号";
-            // 
-            // tb_botQQ
-            // 
-            this.tb_botQQ.Location = new System.Drawing.Point(77, 20);
-            this.tb_botQQ.Name = "tb_botQQ";
-            this.tb_botQQ.ReadOnly = true;
-            this.tb_botQQ.Size = new System.Drawing.Size(252, 21);
-            this.tb_botQQ.TabIndex = 1;
             // 
             // gb_msgSettings
             // 
@@ -276,22 +296,6 @@
             this.gb_msgSettings.TabIndex = 4;
             this.gb_msgSettings.TabStop = false;
             this.gb_msgSettings.Text = "消息设置";
-            // 
-            // lbl_newFriendMsg
-            // 
-            this.lbl_newFriendMsg.AutoSize = true;
-            this.lbl_newFriendMsg.Location = new System.Drawing.Point(6, 26);
-            this.lbl_newFriendMsg.Name = "lbl_newFriendMsg";
-            this.lbl_newFriendMsg.Size = new System.Drawing.Size(65, 12);
-            this.lbl_newFriendMsg.TabIndex = 0;
-            this.lbl_newFriendMsg.Text = "新好友消息";
-            // 
-            // tb_newFriendMsg
-            // 
-            this.tb_newFriendMsg.Location = new System.Drawing.Point(77, 22);
-            this.tb_newFriendMsg.Name = "tb_newFriendMsg";
-            this.tb_newFriendMsg.Size = new System.Drawing.Size(252, 21);
-            this.tb_newFriendMsg.TabIndex = 1;
             // 
             // tb_groupWelcomeMsg
             // 
@@ -309,25 +313,21 @@
             this.lbl_groupWelcomeMsg.TabIndex = 2;
             this.lbl_groupWelcomeMsg.Text = "群欢迎消息";
             // 
-            // lbl_personalSwitches
+            // tb_newFriendMsg
             // 
-            this.lbl_personalSwitches.AutoSize = true;
-            this.lbl_personalSwitches.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_personalSwitches.Location = new System.Drawing.Point(8, 137);
-            this.lbl_personalSwitches.Name = "lbl_personalSwitches";
-            this.lbl_personalSwitches.Size = new System.Drawing.Size(53, 12);
-            this.lbl_personalSwitches.TabIndex = 4;
-            this.lbl_personalSwitches.Text = "个人相关";
+            this.tb_newFriendMsg.Location = new System.Drawing.Point(77, 22);
+            this.tb_newFriendMsg.Name = "tb_newFriendMsg";
+            this.tb_newFriendMsg.Size = new System.Drawing.Size(252, 21);
+            this.tb_newFriendMsg.TabIndex = 1;
             // 
-            // cb_autoAgreePersonal
+            // lbl_newFriendMsg
             // 
-            this.cb_autoAgreePersonal.AutoSize = true;
-            this.cb_autoAgreePersonal.Location = new System.Drawing.Point(10, 159);
-            this.cb_autoAgreePersonal.Name = "cb_autoAgreePersonal";
-            this.cb_autoAgreePersonal.Size = new System.Drawing.Size(108, 16);
-            this.cb_autoAgreePersonal.TabIndex = 5;
-            this.cb_autoAgreePersonal.Text = "自动同意加好友";
-            this.cb_autoAgreePersonal.UseVisualStyleBackColor = true;
+            this.lbl_newFriendMsg.AutoSize = true;
+            this.lbl_newFriendMsg.Location = new System.Drawing.Point(6, 26);
+            this.lbl_newFriendMsg.Name = "lbl_newFriendMsg";
+            this.lbl_newFriendMsg.Size = new System.Drawing.Size(65, 12);
+            this.lbl_newFriendMsg.TabIndex = 0;
+            this.lbl_newFriendMsg.Text = "新好友消息";
             // 
             // groupBox1
             // 
@@ -348,47 +348,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "后台对接";
             // 
-            // cb_webApiEnable
+            // lbl_webApiConfig
             // 
-            this.cb_webApiEnable.AutoSize = true;
-            this.cb_webApiEnable.Location = new System.Drawing.Point(7, 26);
-            this.cb_webApiEnable.Name = "cb_webApiEnable";
-            this.cb_webApiEnable.Size = new System.Drawing.Size(168, 16);
-            this.cb_webApiEnable.TabIndex = 0;
-            this.cb_webApiEnable.Text = "启用需要WebApi的高级服务";
-            this.cb_webApiEnable.UseVisualStyleBackColor = true;
+            this.lbl_webApiConfig.AutoSize = true;
+            this.lbl_webApiConfig.Location = new System.Drawing.Point(6, 140);
+            this.lbl_webApiConfig.Name = "lbl_webApiConfig";
+            this.lbl_webApiConfig.Size = new System.Drawing.Size(53, 12);
+            this.lbl_webApiConfig.TabIndex = 12;
+            this.lbl_webApiConfig.Text = "配置信息";
             // 
-            // tb_webApi
+            // btn_webApiTest
             // 
-            this.tb_webApi.Location = new System.Drawing.Point(77, 49);
-            this.tb_webApi.Name = "tb_webApi";
-            this.tb_webApi.Size = new System.Drawing.Size(252, 21);
-            this.tb_webApi.TabIndex = 5;
+            this.btn_webApiTest.Location = new System.Drawing.Point(254, 129);
+            this.btn_webApiTest.Name = "btn_webApiTest";
+            this.btn_webApiTest.Size = new System.Drawing.Size(75, 23);
+            this.btn_webApiTest.TabIndex = 11;
+            this.btn_webApiTest.Text = "测试";
+            this.btn_webApiTest.UseVisualStyleBackColor = true;
             // 
-            // lbl_webApi
+            // rb_webApiConfig
             // 
-            this.lbl_webApi.AutoSize = true;
-            this.lbl_webApi.Location = new System.Drawing.Point(6, 53);
-            this.lbl_webApi.Name = "lbl_webApi";
-            this.lbl_webApi.Size = new System.Drawing.Size(29, 12);
-            this.lbl_webApi.TabIndex = 4;
-            this.lbl_webApi.Text = "Api ";
-            // 
-            // tb_webApiKey
-            // 
-            this.tb_webApiKey.Location = new System.Drawing.Point(77, 76);
-            this.tb_webApiKey.Name = "tb_webApiKey";
-            this.tb_webApiKey.Size = new System.Drawing.Size(252, 21);
-            this.tb_webApiKey.TabIndex = 7;
-            // 
-            // lbl_webApiKey
-            // 
-            this.lbl_webApiKey.AutoSize = true;
-            this.lbl_webApiKey.Location = new System.Drawing.Point(6, 80);
-            this.lbl_webApiKey.Name = "lbl_webApiKey";
-            this.lbl_webApiKey.Size = new System.Drawing.Size(41, 12);
-            this.lbl_webApiKey.TabIndex = 6;
-            this.lbl_webApiKey.Text = "ApiKey";
+            this.rb_webApiConfig.Location = new System.Drawing.Point(7, 158);
+            this.rb_webApiConfig.Name = "rb_webApiConfig";
+            this.rb_webApiConfig.ReadOnly = true;
+            this.rb_webApiConfig.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.rb_webApiConfig.Size = new System.Drawing.Size(322, 64);
+            this.rb_webApiConfig.TabIndex = 10;
+            this.rb_webApiConfig.Text = "";
             // 
             // tb_webApiSecret
             // 
@@ -406,33 +392,48 @@
             this.lbl_webApiSecret.TabIndex = 8;
             this.lbl_webApiSecret.Text = "ApiSecret";
             // 
-            // rb_webApiConfig
+            // tb_webApiKey
             // 
-            this.rb_webApiConfig.Location = new System.Drawing.Point(7, 158);
-            this.rb_webApiConfig.Name = "rb_webApiConfig";
-            this.rb_webApiConfig.ReadOnly = true;
-            this.rb_webApiConfig.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rb_webApiConfig.Size = new System.Drawing.Size(322, 64);
-            this.rb_webApiConfig.TabIndex = 10;
-            this.rb_webApiConfig.Text = "";
+            this.tb_webApiKey.Location = new System.Drawing.Point(77, 76);
+            this.tb_webApiKey.Name = "tb_webApiKey";
+            this.tb_webApiKey.Size = new System.Drawing.Size(252, 21);
+            this.tb_webApiKey.TabIndex = 7;
             // 
-            // btn_webApiTest
+            // lbl_webApiKey
             // 
-            this.btn_webApiTest.Location = new System.Drawing.Point(254, 129);
-            this.btn_webApiTest.Name = "btn_webApiTest";
-            this.btn_webApiTest.Size = new System.Drawing.Size(75, 23);
-            this.btn_webApiTest.TabIndex = 11;
-            this.btn_webApiTest.Text = "测试";
-            this.btn_webApiTest.UseVisualStyleBackColor = true;
+            this.lbl_webApiKey.AutoSize = true;
+            this.lbl_webApiKey.Location = new System.Drawing.Point(6, 80);
+            this.lbl_webApiKey.Name = "lbl_webApiKey";
+            this.lbl_webApiKey.Size = new System.Drawing.Size(41, 12);
+            this.lbl_webApiKey.TabIndex = 6;
+            this.lbl_webApiKey.Text = "ApiKey";
             // 
-            // lbl_webApiConfig
+            // tb_webApi
             // 
-            this.lbl_webApiConfig.AutoSize = true;
-            this.lbl_webApiConfig.Location = new System.Drawing.Point(6, 140);
-            this.lbl_webApiConfig.Name = "lbl_webApiConfig";
-            this.lbl_webApiConfig.Size = new System.Drawing.Size(53, 12);
-            this.lbl_webApiConfig.TabIndex = 12;
-            this.lbl_webApiConfig.Text = "配置信息";
+            this.tb_webApi.Location = new System.Drawing.Point(77, 49);
+            this.tb_webApi.Name = "tb_webApi";
+            this.tb_webApi.Size = new System.Drawing.Size(252, 21);
+            this.tb_webApi.TabIndex = 5;
+            // 
+            // lbl_webApi
+            // 
+            this.lbl_webApi.AutoSize = true;
+            this.lbl_webApi.Location = new System.Drawing.Point(6, 53);
+            this.lbl_webApi.Name = "lbl_webApi";
+            this.lbl_webApi.Size = new System.Drawing.Size(29, 12);
+            this.lbl_webApi.TabIndex = 4;
+            this.lbl_webApi.Text = "Api ";
+            // 
+            // cb_webApiEnable
+            // 
+            this.cb_webApiEnable.AutoSize = true;
+            this.cb_webApiEnable.Location = new System.Drawing.Point(7, 26);
+            this.cb_webApiEnable.Name = "cb_webApiEnable";
+            this.cb_webApiEnable.Size = new System.Drawing.Size(168, 16);
+            this.cb_webApiEnable.TabIndex = 0;
+            this.cb_webApiEnable.Text = "启用需要WebApi的高级服务";
+            this.cb_webApiEnable.UseVisualStyleBackColor = true;
+            this.cb_webApiEnable.CheckedChanged += new System.EventHandler(this.cb_webApiEnable_CheckedChanged);
             // 
             // ConsoleWindow
             // 
