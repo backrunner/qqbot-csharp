@@ -1,4 +1,5 @@
 ﻿using BackRunner.QQBot;
+using BackRunner.QQBot.Controller;
 using Native.Csharp.Sdk.Cqp.Api;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace Native.Csharp.App.Event
 			//请务必尽快返回本子程序，否则会卡住其他插件以及主程序的加载。
 
 			Common.AppDirectory = EnApi.Instance.GetAppDirectory();  //获取应用数据目录 (无需存储数据时, 请将此行注释)
-
+            Common.SettingFile = Common.AppDirectory + "settings.json"; //设置文件路径
 
 			//返回如：D:\CoolQ\app\com.example.demo\
 			//应用的所有数据、配置【必须】存放于此目录，避免给用户带来困扰。
@@ -74,10 +75,13 @@ namespace Native.Csharp.App.Event
 			//如非必要，不建议在这里加载窗口。（可以添加菜单，让用户手动打开窗口）
 			Common.IsRunning = true;
 
+            //初始化设置
+            SettingsController.Init();
+
             //初始化BotQQ
-            BotConfig.SetBotQQ(EnApi.Instance.GetLoginQQ());
+            SettingsController.settings.BotQQ = EnApi.Instance.GetLoginQQ();
             //初始化random
-            Common.Random = new Random();
+            Common.Random = new Random();            
 		}
 
 		/// <summary>

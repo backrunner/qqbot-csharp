@@ -1,4 +1,5 @@
-﻿using BackRunner.QQBot.Utils;
+﻿using BackRunner.QQBot.Controller;
+using BackRunner.QQBot.Utils;
 using Native.Csharp.App.Model;
 using Native.Csharp.Sdk.Cqp.Api;
 using Native.Csharp.Sdk.Cqp.Model;
@@ -140,7 +141,7 @@ namespace BackRunner.QQBot.Processors
         public static void SetSpecialTitle(GroupMessageEventArgs e)
         {
             GroupMember BotMemberInfo;
-            EnApi.Instance.GetMemberInfo(e.FromGroup, BotConfig.BotQQ, out BotMemberInfo);
+            EnApi.Instance.GetMemberInfo(e.FromGroup, SettingsController.settings.BotQQ, out BotMemberInfo);
             if (BotMemberInfo.PermitType == Native.Csharp.Sdk.Cqp.Enum.PermitType.Holder)
             {
                 if (e.Msg.Contains("CQ:at"))
@@ -185,7 +186,7 @@ namespace BackRunner.QQBot.Processors
         public static void RemoveSpecialTitle(GroupMessageEventArgs e)
         {
             GroupMember BotMemberInfo;
-            EnApi.Instance.GetMemberInfo(e.FromGroup, BotConfig.BotQQ, out BotMemberInfo);
+            EnApi.Instance.GetMemberInfo(e.FromGroup, SettingsController.settings.BotQQ, out BotMemberInfo);
             if (BotMemberInfo.PermitType == Native.Csharp.Sdk.Cqp.Enum.PermitType.Holder)
             {
                 if (e.Msg.Contains("CQ:at"))

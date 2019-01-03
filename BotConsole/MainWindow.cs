@@ -16,5 +16,11 @@ namespace BackRunner.QQBot.BotConsole
         {
             InitializeComponent();
         }
+
+        private void cb_webApiEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            btn_apply.Enabled = true;
+
+        }
     }
 }

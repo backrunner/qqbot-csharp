@@ -15,6 +15,12 @@ namespace Native.Csharp.App
 		/// 获取或设置 App 在运行期间所使用的数据路径
 		/// </summary>
 		public static string AppDirectory { get; set; }
+
+        /// <summary>
+        /// 设置文件的相对路径
+        /// </summary>
+        public static string SettingFile { get; set; }
+
 		/// <summary>
 		/// 获取或设置当前 App 是否处于运行状态
 		/// </summary>

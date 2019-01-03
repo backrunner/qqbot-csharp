@@ -10,6 +10,7 @@ using BackRunner.QQBot.Utils;
 using BackRunner.QQBot.Processors;
 using System.Windows;
 using System.Text.RegularExpressions;
+using BackRunner.QQBot.Controller;
 
 namespace Native.Csharp.App.Event
 {
@@ -48,10 +49,10 @@ namespace Native.Csharp.App.Event
             //这里处理消息
 
             //判断是否是@qqbot的消息
-            if (e.Msg.IndexOf("[CQ:at,qq=" + BotConfig.BotQQ.ToString() + "]") == 0)
+            if (e.Msg.IndexOf("[CQ:at,qq=" + SettingsController.settings.BotQQ.ToString() + "]") == 0)
             {
                 //将@qqbot的部分过滤掉
-                Regex atBotPattern = new Regex(@"\[CQ:at,qq=" + BotConfig.BotQQ.ToString() + "]");
+                Regex atBotPattern = new Regex(@"\[CQ:at,qq=" + SettingsController.settings.BotQQ.ToString() + "]");
                 e.Msg = atBotPattern.Replace(e.Msg, "", 1);
                 e.Msg = e.Msg.Trim();
 
@@ -208,9 +209,9 @@ namespace Native.Csharp.App.Event
             //这里处理消息
 
             //发送入群欢迎消息（仅对30秒内的消息有效）
-            if (e.BeingOperateQQ != BotConfig.BotQQ && (DateTime.Now - e.SendTime).TotalSeconds <= 30)
+            if (e.BeingOperateQQ != SettingsController.settings.BotQQ && (DateTime.Now - e.SendTime).TotalSeconds <= 30)
             {
-                EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.BeingOperateQQ) + BotConfig.WelcomeMsg);
+                EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.BeingOperateQQ) + SettingsController.settings.GroupWelcomeMessage);
             }
 
             e.Handled = true;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
@@ -227,9 +228,9 @@ namespace Native.Csharp.App.Event
             //这里处理消息
 
             //发送入群欢迎消息（仅对30秒内的消息有效）
-            if (e.BeingOperateQQ != BotConfig.BotQQ && (DateTime.Now - e.SendTime).TotalSeconds <= 30)
+            if (e.BeingOperateQQ != SettingsController.settings.BotQQ && (DateTime.Now - e.SendTime).TotalSeconds <= 30)
             {
-                EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.BeingOperateQQ) + BotConfig.WelcomeMsg);
+                EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.BeingOperateQQ) + SettingsController.settings.GroupWelcomeMessage);
             }
 
             e.Handled = true;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
