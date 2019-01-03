@@ -1,4 +1,5 @@
 ﻿using BackRunner.QQBot.BotConsole;
+using Native.Csharp.Sdk.Cqp.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,10 @@ namespace Native.Csharp.App
         /// <summary>
 		/// 程序共用的Random实例
 		/// </summary>
+		/// <summary>
+		/// 获取或设置当前 App 使用的 酷Q Api 接口实例
+		/// </summary>
+		public static CqApi CqApi { get; set; }
         public static Random Random { get; set; }
 
         /// <summary>
