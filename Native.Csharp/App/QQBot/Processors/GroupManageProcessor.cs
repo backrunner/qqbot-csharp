@@ -1,7 +1,7 @@
 ﻿using BackRunner.QQBot.Controller;
 using BackRunner.QQBot.Utils;
+using Native.Csharp.App;
 using Native.Csharp.App.Model;
-using Native.Csharp.Sdk.Cqp.Api;
 using Native.Csharp.Sdk.Cqp.Model;
 using System;
 using System.Collections.Generic;
@@ -91,22 +91,22 @@ namespace BackRunner.QQBot.Processors
                     foreach (Match qq in beingOperatedQQ)
                     {
                         long operatedQQ = Convert.ToInt64(qq.ToString());
-                        operatedMessage += EnApi.Instance.CqCode_At(operatedQQ);
-                        EnApi.Instance.SetGroupBanSpeak(e.FromGroup, operatedQQ, banTime);
+                        operatedMessage += Common.CqApi.CqCode_At(operatedQQ);
+                        Common.CqApi.SetGroupBanSpeak(e.FromGroup, operatedQQ, banTime);
                     }
 
-                    EnApi.Instance.SendGroupMessage(e.FromGroup, operatedMessage + "已被禁言" + (day>0?day.ToString()+"天":"")
+                    Common.CqApi.SendGroupMessage(e.FromGroup, operatedMessage + "已被禁言" + (day>0?day.ToString()+"天":"")
                         + (hour > 0 ? hour.ToString() + "小时" : "") + (minute > 0 ? minute.ToString() + "分钟" : "") +
                         (second > 0 ? second.ToString() + "秒" : ""));
                 }
                 else
                 {
-                    EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.FromQQ) + "你需要先告诉我禁言多长时间");
+                    Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.FromQQ) + "你需要先告诉我禁言多长时间");
                 }
             }
             else
             {
-                EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.FromQQ) + "你需要先告诉我禁言谁");
+                Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.FromQQ) + "你需要先告诉我禁言谁");
             }
         }
 
@@ -123,15 +123,15 @@ namespace BackRunner.QQBot.Processors
                 foreach (Match qq in beingOperatedQQ)
                 {
                     long operatedQQ = Convert.ToInt64(qq.ToString());
-                    operatedMessage += EnApi.Instance.CqCode_At(operatedQQ);
-                    EnApi.Instance.SetGroupBanSpeak(e.FromGroup, operatedQQ, TimeSpan.Zero);
+                    operatedMessage += Common.CqApi.CqCode_At(operatedQQ);
+                    Common.CqApi.SetGroupBanSpeak(e.FromGroup, operatedQQ, TimeSpan.Zero);
                 }
 
-                EnApi.Instance.SendGroupMessage(e.FromGroup, "已解除" + operatedMessage + "的禁言");
+                Common.CqApi.SendGroupMessage(e.FromGroup, "已解除" + operatedMessage + "的禁言");
             }
             else
             {
-                EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.FromQQ) + "你需要先告诉我要解禁谁");
+                Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.FromQQ) + "你需要先告诉我要解禁谁");
             }
         }
         #endregion
@@ -141,7 +141,7 @@ namespace BackRunner.QQBot.Processors
         public static void SetSpecialTitle(GroupMessageEventArgs e)
         {
             GroupMember BotMemberInfo;
-            EnApi.Instance.GetMemberInfo(e.FromGroup, SettingsController.settings.BotQQ, out BotMemberInfo);
+            Common.CqApi.GetMemberInfo(e.FromGroup, SettingsController.settings.BotQQ, out BotMemberInfo);
             if (BotMemberInfo.PermitType == Native.Csharp.Sdk.Cqp.Enum.PermitType.Holder)
             {
                 if (e.Msg.Contains("CQ:at"))
@@ -166,19 +166,19 @@ namespace BackRunner.QQBot.Processors
                     foreach (Match qq in beingOperatedQQ)
                     {
                         long operatedQQ = Convert.ToInt64(qq.ToString());
-                        operatedMessage += EnApi.Instance.CqCode_At(operatedQQ);
-                        EnApi.Instance.SetGroupSpecialTitle(e.FromGroup, operatedQQ, title, forever);
+                        operatedMessage += Common.CqApi.CqCode_At(operatedQQ);
+                        Common.CqApi.SetGroupSpecialTitle(e.FromGroup, operatedQQ, title, forever);
                     }
 
-                    EnApi.Instance.SendGroupMessage(e.FromGroup, "已经给成员" + operatedMessage + "设置了专属头衔：" + title);
+                    Common.CqApi.SendGroupMessage(e.FromGroup, "已经给成员" + operatedMessage + "设置了专属头衔：" + title);
                 }
                 else
                 {
-                    EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.FromQQ) + "你需要先告诉我要给谁设置专属头衔");
+                    Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.FromQQ) + "你需要先告诉我要给谁设置专属头衔");
                 }
             } else
             {
-                EnApi.Instance.SendGroupMessage(e.FromGroup, "本机不是群主，不能给成员设置专属头衔");
+                Common.CqApi.SendGroupMessage(e.FromGroup, "本机不是群主，不能给成员设置专属头衔");
             }
         }
 
@@ -186,7 +186,7 @@ namespace BackRunner.QQBot.Processors
         public static void RemoveSpecialTitle(GroupMessageEventArgs e)
         {
             GroupMember BotMemberInfo;
-            EnApi.Instance.GetMemberInfo(e.FromGroup, SettingsController.settings.BotQQ, out BotMemberInfo);
+            Common.CqApi.GetMemberInfo(e.FromGroup, SettingsController.settings.BotQQ, out BotMemberInfo);
             if (BotMemberInfo.PermitType == Native.Csharp.Sdk.Cqp.Enum.PermitType.Holder)
             {
                 if (e.Msg.Contains("CQ:at"))
@@ -199,20 +199,20 @@ namespace BackRunner.QQBot.Processors
                     foreach (Match qq in beingOperatedQQ)
                     {
                         long operatedQQ = Convert.ToInt64(qq.ToString());
-                        operatedMessage += EnApi.Instance.CqCode_At(operatedQQ);
-                        EnApi.Instance.SetGroupSpecialTitle(e.FromGroup, operatedQQ, "", TimeSpan.Zero);
+                        operatedMessage += Common.CqApi.CqCode_At(operatedQQ);
+                        Common.CqApi.SetGroupSpecialTitle(e.FromGroup, operatedQQ, "", TimeSpan.Zero);
                     }
 
-                    EnApi.Instance.SendGroupMessage(e.FromGroup, "已经移除了成员" + operatedMessage + "的专属头衔");
+                    Common.CqApi.SendGroupMessage(e.FromGroup, "已经移除了成员" + operatedMessage + "的专属头衔");
                 }
                 else
                 {
-                    EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.FromQQ) + "你需要先告诉我要移除谁的头衔");
+                    Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.FromQQ) + "你需要先告诉我要移除谁的头衔");
                 }
             }
             else
             {
-                EnApi.Instance.SendGroupMessage(e.FromGroup, "本机不是群主，不能移除成员的专属头衔");
+                Common.CqApi.SendGroupMessage(e.FromGroup, "本机不是群主，不能移除成员的专属头衔");
             }
         }
         #endregion

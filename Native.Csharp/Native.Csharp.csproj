@@ -102,28 +102,8 @@
     <Compile Include="App\QQBot\Processors\RepeatProcessor.cs" />
     <Compile Include="App\QQBot\Utils\ChineseNumberConverter.cs" />
     <Compile Include="App\QQBot\Utils\WinformHelper.cs" />
-    <Compile Include="Sdk.Cqp\Api\EnApi.cs" />
-    <Compile Include="Sdk.Cqp\Common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App\Core\LibExport.cs" />
-    <Compile Include="Sdk.Cqp\Core\CQP.cs" />
-    <Compile Include="Sdk.Cqp\Enum\AudioOutFormat.cs" />
-    <Compile Include="Sdk.Cqp\Enum\Face.cs" />
-    <Compile Include="Sdk.Cqp\Enum\FloatWindowColors.cs" />
-    <Compile Include="Sdk.Cqp\Enum\LogerLevel.cs" />
-    <Compile Include="Sdk.Cqp\Enum\MessageHanding.cs" />
-    <Compile Include="Sdk.Cqp\Enum\PermitType.cs" />
-    <Compile Include="Sdk.Cqp\Enum\RequestType.cs" />
-    <Compile Include="Sdk.Cqp\Enum\ResponseType.cs" />
-    <Compile Include="Sdk.Cqp\Enum\Sex.cs" />
-    <Compile Include="Sdk.Cqp\Model\FloatWindow.cs" />
-    <Compile Include="Sdk.Cqp\Model\Group.cs" />
-    <Compile Include="Sdk.Cqp\Model\GroupAnonymous.cs" />
-    <Compile Include="Sdk.Cqp\Model\GroupFile.cs" />
-    <Compile Include="Sdk.Cqp\Model\GroupMember.cs" />
-    <Compile Include="Sdk.Cqp\Model\QQ.cs" />
-    <Compile Include="Sdk.Cqp\Other\Pack.cs" />
-    <Compile Include="Sdk.Cqp\Other\UnPack.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="top.backrunner.qqbot.json">
@@ -138,6 +118,10 @@
     <ProjectReference Include="..\BotConsole\BotConsole.csproj">
       <Project>{92552c82-e0da-4017-8d26-3d867c3537fa}</Project>
       <Name>BotConsole</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Native.Csharp.Sdk\Native.Csharp.Sdk.csproj">
+      <Project>{797eaebc-4d5b-4eef-87f4-a508fda2cb6a}</Project>
+      <Name>Native.Csharp.Sdk</Name>
     </ProjectReference>
     <ProjectReference Include="..\Navite.Csharp.Tool\Navite.Csharp.Tool.csproj">
       <Project>{9db94cbf-6843-4ea3-9241-769124416fe9}</Project>

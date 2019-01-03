@@ -1,6 +1,4 @@
-﻿using Native.Csharp.Sdk.Cqp.Api;
-using Native.Csharp.Sdk.Cqp.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +9,7 @@ using BackRunner.QQBot.Processors;
 using System.Windows;
 using System.Text.RegularExpressions;
 using BackRunner.QQBot.Controller;
+using Native.Csharp.Sdk.Cqp.Model;
 
 namespace Native.Csharp.App.Event
 {
@@ -59,7 +58,7 @@ namespace Native.Csharp.App.Event
                 if (e.FromAnonymous != null)    //如果此属性不为null, 则消息来自于匿名成员
                 {
                     //匿名消息处理示例
-                    //EnApi.Instance.SendGroupMessage(e.FromGroup, e.FromAnonymous.CodeName + " 你发送了这样的消息: " + e.Msg);
+                    //Common.CqApi.SendGroupMessage(e.FromGroup, e.FromAnonymous.CodeName + " 你发送了这样的消息: " + e.Msg);
 
                     //匿名消息处理
                     ProcessGroupMessage(e, true);
@@ -70,7 +69,7 @@ namespace Native.Csharp.App.Event
                 else
                 {
                     //非匿名消息处理示例
-                    //EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.FromQQ) + "你发送了这样的消息: " + e.Msg);
+                    //Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.FromQQ) + "你发送了这样的消息: " + e.Msg);
 
                     //非匿名消息处理
                     ProcessGroupMessage(e, false);
@@ -101,7 +100,7 @@ namespace Native.Csharp.App.Event
                 //普通消息
                 #region === 管理功能 ===
                 GroupMember fromMember;
-                EnApi.Instance.GetMemberInfo(e.FromGroup, e.FromQQ, out fromMember);
+                Common.CqApi.GetMemberInfo(e.FromGroup, e.FromQQ, out fromMember);
                 //验证是否有管理权限
                 if (fromMember.PermitType == Sdk.Cqp.Enum.PermitType.Manage || fromMember.PermitType == Sdk.Cqp.Enum.PermitType.Holder)
                 {
@@ -111,13 +110,13 @@ namespace Native.Csharp.App.Event
                     //全体禁言
                     if (e.Msg.Contains("开启全体禁言"))
                     {
-                        EnApi.Instance.SetGroupWholeBanSpeak(e.FromGroup, true);
-                        EnApi.Instance.SendGroupMessage(e.FromGroup, "全体禁言已开启。");
+                        Common.CqApi.SetGroupWholeBanSpeak(e.FromGroup, true);
+                        Common.CqApi.SendGroupMessage(e.FromGroup, "全体禁言已开启。");
 
                     } else if (e.Msg.Contains("解除全体禁言"))
                     {
-                        EnApi.Instance.SetGroupWholeBanSpeak(e.FromGroup, false);
-                        EnApi.Instance.SendGroupMessage(e.FromGroup, "全体禁言已解除。");
+                        Common.CqApi.SetGroupWholeBanSpeak(e.FromGroup, false);
+                        Common.CqApi.SendGroupMessage(e.FromGroup, "全体禁言已解除。");
                     }
                     //禁言
                     else if (e.Msg.Contains("禁言") || e.Msg.Contains("封禁"))
@@ -211,7 +210,7 @@ namespace Native.Csharp.App.Event
             //发送入群欢迎消息（仅对30秒内的消息有效）
             if (e.BeingOperateQQ != SettingsController.settings.BotQQ && (DateTime.Now - e.SendTime).TotalSeconds <= 30)
             {
-                EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.BeingOperateQQ) + SettingsController.settings.GroupWelcomeMessage);
+                Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.BeingOperateQQ) + SettingsController.settings.GroupWelcomeMessage);
             }
 
             e.Handled = true;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
@@ -230,7 +229,7 @@ namespace Native.Csharp.App.Event
             //发送入群欢迎消息（仅对30秒内的消息有效）
             if (e.BeingOperateQQ != SettingsController.settings.BotQQ && (DateTime.Now - e.SendTime).TotalSeconds <= 30)
             {
-                EnApi.Instance.SendGroupMessage(e.FromGroup, EnApi.Instance.CqCode_At(e.BeingOperateQQ) + SettingsController.settings.GroupWelcomeMessage);
+                Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.BeingOperateQQ) + SettingsController.settings.GroupWelcomeMessage);
             }
 
             e.Handled = true;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法

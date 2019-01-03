@@ -38,7 +38,7 @@ namespace BackRunner.QQBot.Processors
                         if (gm.RepeatCount >= Common.Random.Next(2,5))
                         {
                             //当复读次数达到三次的时候进行复读
-                            EnApi.Instance.SendGroupMessage(e.FromGroup, e.Msg);
+                            Common.CqApi.SendGroupMessage(e.FromGroup, e.Msg);
                             gm.isRepeated = true;
                         }
                     } else

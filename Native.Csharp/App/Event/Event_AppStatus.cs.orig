@@ -43,8 +43,13 @@ namespace Native.Csharp.App.Event
 			//无论本应用是否被启用，本函数都会在酷Q启动后执行一次，请在这里执行插件初始化代码。
 			//请务必尽快返回本子程序，否则会卡住其他插件以及主程序的加载。
 
-			Common.AppDirectory = Common.CqApi.GetAppDirectory();  //获取应用数据目录 (无需存储数据时, 请将此行注释)
+<<<<<<< HEAD
+			Common.AppDirectory = EnApi.Instance.GetAppDirectory();  //获取应用数据目录 (无需存储数据时, 请将此行注释)
             Common.SettingFile = Common.AppDirectory + "settings.json"; //设置文件路径
+=======
+			Common.AppDirectory = Common.CqApi.GetAppDirectory();  //获取应用数据目录 (无需存储数据时, 请将此行注释)
+
+>>>>>>> 8ada13f84d1d5e655afad0d5049c7dcbded10810
 
 			//返回如：D:\CoolQ\app\com.example.demo\
 			//应用的所有数据、配置【必须】存放于此目录，避免给用户带来困扰。
@@ -79,7 +84,7 @@ namespace Native.Csharp.App.Event
             SettingsController.Init();
 
             //初始化BotQQ
-            SettingsController.settings.BotQQ = Common.CqApi.GetLoginQQ();
+            SettingsController.settings.BotQQ = EnApi.Instance.GetLoginQQ();
             //初始化random
             Common.Random = new Random();            
 		}
