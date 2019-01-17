@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gb_switches = new System.Windows.Forms.GroupBox();
+            this.cb_enableBotinGroup = new System.Windows.Forms.CheckBox();
             this.cb_autoAgreePersonal = new System.Windows.Forms.CheckBox();
             this.lbl_personalSwitches = new System.Windows.Forms.Label();
             this.lbl_groupSwitches = new System.Windows.Forms.Label();
@@ -47,14 +48,14 @@
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_reset = new System.Windows.Forms.Button();
             this.gb_basic = new System.Windows.Forms.GroupBox();
-            this.tb_botQQ = new System.Windows.Forms.TextBox();
+            this.tb_ownerQQ = new System.Windows.Forms.TextBox();
             this.lbl_botQQ = new System.Windows.Forms.Label();
             this.gb_msgSettings = new System.Windows.Forms.GroupBox();
             this.tb_groupWelcomeMsg = new System.Windows.Forms.TextBox();
             this.lbl_groupWelcomeMsg = new System.Windows.Forms.Label();
             this.tb_newFriendMsg = new System.Windows.Forms.TextBox();
             this.lbl_newFriendMsg = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gb_WebApi = new System.Windows.Forms.GroupBox();
             this.lbl_webApiConfig = new System.Windows.Forms.Label();
             this.btn_webApiTest = new System.Windows.Forms.Button();
             this.rb_webApiConfig = new System.Windows.Forms.RichTextBox();
@@ -66,24 +67,27 @@
             this.lbl_webApi = new System.Windows.Forms.Label();
             this.cb_webApiEnable = new System.Windows.Forms.CheckBox();
             this.gb_limitGroup = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.lb_groupWhiteList = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lb_groupWhiteList = new System.Windows.Forms.ListBox();
             this.btn_removeGroupWhiteList = new System.Windows.Forms.Button();
+            this.tb_enableGroupNumber = new System.Windows.Forms.TextBox();
             this.btn_addGroupWhiteList = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lbl_otherSwitches = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.gb_switches.SuspendLayout();
             this.gb_sensitiveWords.SuspendLayout();
             this.gb_operation.SuspendLayout();
             this.gb_basic.SuspendLayout();
             this.gb_msgSettings.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gb_WebApi.SuspendLayout();
             this.gb_limitGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // gb_switches
             // 
             this.gb_switches.Controls.Add(this.checkBox1);
+            this.gb_switches.Controls.Add(this.lbl_otherSwitches);
+            this.gb_switches.Controls.Add(this.cb_enableBotinGroup);
             this.gb_switches.Controls.Add(this.cb_autoAgreePersonal);
             this.gb_switches.Controls.Add(this.lbl_personalSwitches);
             this.gb_switches.Controls.Add(this.lbl_groupSwitches);
@@ -97,6 +101,17 @@
             this.gb_switches.TabStop = false;
             this.gb_switches.Text = "开关";
             // 
+            // cb_enableBotinGroup
+            // 
+            this.cb_enableBotinGroup.AutoSize = true;
+            this.cb_enableBotinGroup.Location = new System.Drawing.Point(10, 108);
+            this.cb_enableBotinGroup.Name = "cb_enableBotinGroup";
+            this.cb_enableBotinGroup.Size = new System.Drawing.Size(132, 16);
+            this.cb_enableBotinGroup.TabIndex = 6;
+            this.cb_enableBotinGroup.Text = "限定启用机器人的群";
+            this.cb_enableBotinGroup.UseVisualStyleBackColor = true;
+            this.cb_enableBotinGroup.CheckedChanged += new System.EventHandler(this.cb_enableBotinGroup_CheckedChanged);
+            // 
             // cb_autoAgreePersonal
             // 
             this.cb_autoAgreePersonal.AutoSize = true;
@@ -106,6 +121,7 @@
             this.cb_autoAgreePersonal.TabIndex = 5;
             this.cb_autoAgreePersonal.Text = "自动同意加好友";
             this.cb_autoAgreePersonal.UseVisualStyleBackColor = true;
+            this.cb_autoAgreePersonal.CheckedChanged += new System.EventHandler(this.cb_autoAgreePersonal_CheckedChanged);
             // 
             // lbl_personalSwitches
             // 
@@ -136,6 +152,7 @@
             this.cb_autoRepeat.TabIndex = 3;
             this.cb_autoRepeat.Text = "群内自然复读";
             this.cb_autoRepeat.UseVisualStyleBackColor = true;
+            this.cb_autoRepeat.CheckedChanged += new System.EventHandler(this.cb_autoRepeat_CheckedChanged);
             // 
             // cb_autoAgreeGroup
             // 
@@ -146,6 +163,7 @@
             this.cb_autoAgreeGroup.TabIndex = 2;
             this.cb_autoAgreeGroup.Text = "自动同意入群";
             this.cb_autoAgreeGroup.UseVisualStyleBackColor = true;
+            this.cb_autoAgreeGroup.CheckedChanged += new System.EventHandler(this.cb_autoAgreeGroup_CheckedChanged);
             // 
             // cb_welcomeMsg
             // 
@@ -156,6 +174,7 @@
             this.cb_welcomeMsg.TabIndex = 1;
             this.cb_welcomeMsg.Text = "入群欢迎消息";
             this.cb_welcomeMsg.UseVisualStyleBackColor = true;
+            this.cb_welcomeMsg.CheckedChanged += new System.EventHandler(this.cb_welcomeMsg_CheckedChanged);
             // 
             // gb_sensitiveWords
             // 
@@ -183,12 +202,14 @@
             // 
             // btn_delSensitiveWord
             // 
+            this.btn_delSensitiveWord.Enabled = false;
             this.btn_delSensitiveWord.Location = new System.Drawing.Point(146, 182);
             this.btn_delSensitiveWord.Name = "btn_delSensitiveWord";
             this.btn_delSensitiveWord.Size = new System.Drawing.Size(109, 23);
             this.btn_delSensitiveWord.TabIndex = 4;
-            this.btn_delSensitiveWord.Text = "删除";
+            this.btn_delSensitiveWord.Text = "移除选中";
             this.btn_delSensitiveWord.UseVisualStyleBackColor = true;
+            this.btn_delSensitiveWord.Click += new System.EventHandler(this.btn_delSensitiveWord_Click);
             // 
             // btn_addSensitiveWord
             // 
@@ -198,6 +219,7 @@
             this.btn_addSensitiveWord.TabIndex = 3;
             this.btn_addSensitiveWord.Text = "添加";
             this.btn_addSensitiveWord.UseVisualStyleBackColor = true;
+            this.btn_addSensitiveWord.Click += new System.EventHandler(this.btn_addSensitiveWord_Click);
             // 
             // tb_newSensitiveWord
             // 
@@ -214,6 +236,7 @@
             this.lb_sensitiveWords.Name = "lb_sensitiveWords";
             this.lb_sensitiveWords.Size = new System.Drawing.Size(134, 184);
             this.lb_sensitiveWords.TabIndex = 0;
+            this.lb_sensitiveWords.SelectedIndexChanged += new System.EventHandler(this.lb_sensitiveWords_SelectedIndexChanged);
             // 
             // gb_operation
             // 
@@ -240,6 +263,7 @@
             // 
             // btn_save
             // 
+            this.btn_save.Enabled = false;
             this.btn_save.Location = new System.Drawing.Point(173, 16);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(75, 23);
@@ -255,6 +279,7 @@
             this.btn_cancel.TabIndex = 1;
             this.btn_cancel.Text = "取消";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_reset
             // 
@@ -267,7 +292,7 @@
             // 
             // gb_basic
             // 
-            this.gb_basic.Controls.Add(this.tb_botQQ);
+            this.gb_basic.Controls.Add(this.tb_ownerQQ);
             this.gb_basic.Controls.Add(this.lbl_botQQ);
             this.gb_basic.Location = new System.Drawing.Point(444, 13);
             this.gb_basic.Name = "gb_basic";
@@ -276,22 +301,21 @@
             this.gb_basic.TabStop = false;
             this.gb_basic.Text = "基本设置";
             // 
-            // tb_botQQ
+            // tb_ownerQQ
             // 
-            this.tb_botQQ.Location = new System.Drawing.Point(77, 20);
-            this.tb_botQQ.Name = "tb_botQQ";
-            this.tb_botQQ.ReadOnly = true;
-            this.tb_botQQ.Size = new System.Drawing.Size(252, 21);
-            this.tb_botQQ.TabIndex = 1;
+            this.tb_ownerQQ.Location = new System.Drawing.Point(77, 20);
+            this.tb_ownerQQ.Name = "tb_ownerQQ";
+            this.tb_ownerQQ.Size = new System.Drawing.Size(252, 21);
+            this.tb_ownerQQ.TabIndex = 1;
             // 
             // lbl_botQQ
             // 
             this.lbl_botQQ.AutoSize = true;
             this.lbl_botQQ.Location = new System.Drawing.Point(6, 24);
             this.lbl_botQQ.Name = "lbl_botQQ";
-            this.lbl_botQQ.Size = new System.Drawing.Size(65, 12);
+            this.lbl_botQQ.Size = new System.Drawing.Size(53, 12);
             this.lbl_botQQ.TabIndex = 0;
-            this.lbl_botQQ.Text = "机器人QQ号";
+            this.lbl_botQQ.Text = "主人QQ号";
             // 
             // gb_msgSettings
             // 
@@ -338,29 +362,28 @@
             this.lbl_newFriendMsg.TabIndex = 0;
             this.lbl_newFriendMsg.Text = "新好友消息";
             // 
-            // groupBox1
+            // gb_WebApi
             // 
-            this.groupBox1.Controls.Add(this.lbl_webApiConfig);
-            this.groupBox1.Controls.Add(this.btn_webApiTest);
-            this.groupBox1.Controls.Add(this.rb_webApiConfig);
-            this.groupBox1.Controls.Add(this.tb_webApiSecret);
-            this.groupBox1.Controls.Add(this.lbl_webApiSecret);
-            this.groupBox1.Controls.Add(this.tb_webApiKey);
-            this.groupBox1.Controls.Add(this.lbl_webApiKey);
-            this.groupBox1.Controls.Add(this.tb_webApi);
-            this.groupBox1.Controls.Add(this.lbl_webApi);
-            this.groupBox1.Controls.Add(this.cb_webApiEnable);
-            this.groupBox1.Location = new System.Drawing.Point(444, 171);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(335, 228);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "后台对接";
+            this.gb_WebApi.Controls.Add(this.lbl_webApiConfig);
+            this.gb_WebApi.Controls.Add(this.btn_webApiTest);
+            this.gb_WebApi.Controls.Add(this.rb_webApiConfig);
+            this.gb_WebApi.Controls.Add(this.tb_webApiSecret);
+            this.gb_WebApi.Controls.Add(this.lbl_webApiSecret);
+            this.gb_WebApi.Controls.Add(this.tb_webApiKey);
+            this.gb_WebApi.Controls.Add(this.lbl_webApiKey);
+            this.gb_WebApi.Controls.Add(this.tb_webApi);
+            this.gb_WebApi.Controls.Add(this.lbl_webApi);
+            this.gb_WebApi.Location = new System.Drawing.Point(444, 194);
+            this.gb_WebApi.Name = "gb_WebApi";
+            this.gb_WebApi.Size = new System.Drawing.Size(335, 205);
+            this.gb_WebApi.TabIndex = 5;
+            this.gb_WebApi.TabStop = false;
+            this.gb_WebApi.Text = "后台对接";
             // 
             // lbl_webApiConfig
             // 
             this.lbl_webApiConfig.AutoSize = true;
-            this.lbl_webApiConfig.Location = new System.Drawing.Point(6, 140);
+            this.lbl_webApiConfig.Location = new System.Drawing.Point(7, 108);
             this.lbl_webApiConfig.Name = "lbl_webApiConfig";
             this.lbl_webApiConfig.Size = new System.Drawing.Size(53, 12);
             this.lbl_webApiConfig.TabIndex = 12;
@@ -368,7 +391,7 @@
             // 
             // btn_webApiTest
             // 
-            this.btn_webApiTest.Location = new System.Drawing.Point(254, 129);
+            this.btn_webApiTest.Location = new System.Drawing.Point(255, 101);
             this.btn_webApiTest.Name = "btn_webApiTest";
             this.btn_webApiTest.Size = new System.Drawing.Size(75, 23);
             this.btn_webApiTest.TabIndex = 11;
@@ -377,7 +400,7 @@
             // 
             // rb_webApiConfig
             // 
-            this.rb_webApiConfig.Location = new System.Drawing.Point(7, 158);
+            this.rb_webApiConfig.Location = new System.Drawing.Point(8, 130);
             this.rb_webApiConfig.Name = "rb_webApiConfig";
             this.rb_webApiConfig.ReadOnly = true;
             this.rb_webApiConfig.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
@@ -387,7 +410,7 @@
             // 
             // tb_webApiSecret
             // 
-            this.tb_webApiSecret.Location = new System.Drawing.Point(77, 103);
+            this.tb_webApiSecret.Location = new System.Drawing.Point(78, 75);
             this.tb_webApiSecret.Name = "tb_webApiSecret";
             this.tb_webApiSecret.Size = new System.Drawing.Size(252, 21);
             this.tb_webApiSecret.TabIndex = 9;
@@ -395,7 +418,7 @@
             // lbl_webApiSecret
             // 
             this.lbl_webApiSecret.AutoSize = true;
-            this.lbl_webApiSecret.Location = new System.Drawing.Point(6, 107);
+            this.lbl_webApiSecret.Location = new System.Drawing.Point(7, 79);
             this.lbl_webApiSecret.Name = "lbl_webApiSecret";
             this.lbl_webApiSecret.Size = new System.Drawing.Size(59, 12);
             this.lbl_webApiSecret.TabIndex = 8;
@@ -403,7 +426,7 @@
             // 
             // tb_webApiKey
             // 
-            this.tb_webApiKey.Location = new System.Drawing.Point(77, 76);
+            this.tb_webApiKey.Location = new System.Drawing.Point(78, 48);
             this.tb_webApiKey.Name = "tb_webApiKey";
             this.tb_webApiKey.Size = new System.Drawing.Size(252, 21);
             this.tb_webApiKey.TabIndex = 7;
@@ -411,7 +434,7 @@
             // lbl_webApiKey
             // 
             this.lbl_webApiKey.AutoSize = true;
-            this.lbl_webApiKey.Location = new System.Drawing.Point(6, 80);
+            this.lbl_webApiKey.Location = new System.Drawing.Point(7, 52);
             this.lbl_webApiKey.Name = "lbl_webApiKey";
             this.lbl_webApiKey.Size = new System.Drawing.Size(41, 12);
             this.lbl_webApiKey.TabIndex = 6;
@@ -419,7 +442,7 @@
             // 
             // tb_webApi
             // 
-            this.tb_webApi.Location = new System.Drawing.Point(77, 49);
+            this.tb_webApi.Location = new System.Drawing.Point(78, 21);
             this.tb_webApi.Name = "tb_webApi";
             this.tb_webApi.Size = new System.Drawing.Size(252, 21);
             this.tb_webApi.TabIndex = 5;
@@ -427,7 +450,7 @@
             // lbl_webApi
             // 
             this.lbl_webApi.AutoSize = true;
-            this.lbl_webApi.Location = new System.Drawing.Point(6, 53);
+            this.lbl_webApi.Location = new System.Drawing.Point(7, 25);
             this.lbl_webApi.Name = "lbl_webApi";
             this.lbl_webApi.Size = new System.Drawing.Size(29, 12);
             this.lbl_webApi.TabIndex = 4;
@@ -436,7 +459,7 @@
             // cb_webApiEnable
             // 
             this.cb_webApiEnable.AutoSize = true;
-            this.cb_webApiEnable.Location = new System.Drawing.Point(7, 26);
+            this.cb_webApiEnable.Location = new System.Drawing.Point(445, 168);
             this.cb_webApiEnable.Name = "cb_webApiEnable";
             this.cb_webApiEnable.Size = new System.Drawing.Size(168, 16);
             this.cb_webApiEnable.TabIndex = 0;
@@ -449,7 +472,7 @@
             this.gb_limitGroup.Controls.Add(this.label1);
             this.gb_limitGroup.Controls.Add(this.lb_groupWhiteList);
             this.gb_limitGroup.Controls.Add(this.btn_removeGroupWhiteList);
-            this.gb_limitGroup.Controls.Add(this.textBox1);
+            this.gb_limitGroup.Controls.Add(this.tb_enableGroupNumber);
             this.gb_limitGroup.Controls.Add(this.btn_addGroupWhiteList);
             this.gb_limitGroup.Location = new System.Drawing.Point(176, 233);
             this.gb_limitGroup.Name = "gb_limitGroup";
@@ -457,25 +480,6 @@
             this.gb_limitGroup.TabIndex = 6;
             this.gb_limitGroup.TabStop = false;
             this.gb_limitGroup.Text = "群白名单";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(10, 108);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(132, 16);
-            this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "限定启用机器人的群";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // lb_groupWhiteList
-            // 
-            this.lb_groupWhiteList.FormattingEnabled = true;
-            this.lb_groupWhiteList.ItemHeight = 12;
-            this.lb_groupWhiteList.Location = new System.Drawing.Point(6, 20);
-            this.lb_groupWhiteList.Name = "lb_groupWhiteList";
-            this.lb_groupWhiteList.Size = new System.Drawing.Size(134, 184);
-            this.lb_groupWhiteList.TabIndex = 6;
             // 
             // label1
             // 
@@ -487,14 +491,34 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "群号";
             // 
+            // lb_groupWhiteList
+            // 
+            this.lb_groupWhiteList.FormattingEnabled = true;
+            this.lb_groupWhiteList.ItemHeight = 12;
+            this.lb_groupWhiteList.Location = new System.Drawing.Point(6, 20);
+            this.lb_groupWhiteList.Name = "lb_groupWhiteList";
+            this.lb_groupWhiteList.Size = new System.Drawing.Size(134, 184);
+            this.lb_groupWhiteList.TabIndex = 6;
+            this.lb_groupWhiteList.SelectedIndexChanged += new System.EventHandler(this.lb_groupWhiteList_SelectedIndexChanged);
+            // 
             // btn_removeGroupWhiteList
             // 
+            this.btn_removeGroupWhiteList.Enabled = false;
             this.btn_removeGroupWhiteList.Location = new System.Drawing.Point(146, 181);
             this.btn_removeGroupWhiteList.Name = "btn_removeGroupWhiteList";
             this.btn_removeGroupWhiteList.Size = new System.Drawing.Size(109, 23);
             this.btn_removeGroupWhiteList.TabIndex = 8;
             this.btn_removeGroupWhiteList.Text = "移除选中";
             this.btn_removeGroupWhiteList.UseVisualStyleBackColor = true;
+            this.btn_removeGroupWhiteList.Click += new System.EventHandler(this.btn_removeGroupWhiteList_Click);
+            // 
+            // tb_enableGroupNumber
+            // 
+            this.tb_enableGroupNumber.Location = new System.Drawing.Point(146, 125);
+            this.tb_enableGroupNumber.Name = "tb_enableGroupNumber";
+            this.tb_enableGroupNumber.Size = new System.Drawing.Size(109, 21);
+            this.tb_enableGroupNumber.TabIndex = 6;
+            this.tb_enableGroupNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_enableGroupNumber_KeyPress);
             // 
             // btn_addGroupWhiteList
             // 
@@ -504,13 +528,27 @@
             this.btn_addGroupWhiteList.TabIndex = 7;
             this.btn_addGroupWhiteList.Text = "添加";
             this.btn_addGroupWhiteList.UseVisualStyleBackColor = true;
+            this.btn_addGroupWhiteList.Click += new System.EventHandler(this.btn_addGroupWhiteList_Click);
             // 
-            // textBox1
+            // lbl_otherSwitches
             // 
-            this.textBox1.Location = new System.Drawing.Point(146, 125);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(109, 21);
-            this.textBox1.TabIndex = 6;
+            this.lbl_otherSwitches.AutoSize = true;
+            this.lbl_otherSwitches.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_otherSwitches.Location = new System.Drawing.Point(8, 187);
+            this.lbl_otherSwitches.Name = "lbl_otherSwitches";
+            this.lbl_otherSwitches.Size = new System.Drawing.Size(29, 12);
+            this.lbl_otherSwitches.TabIndex = 7;
+            this.lbl_otherSwitches.Text = "其他";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(10, 210);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(96, 16);
+            this.checkBox1.TabIndex = 8;
+            this.checkBox1.Text = "启用主人通知";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // ConsoleWindow
             // 
@@ -519,12 +557,13 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(792, 461);
             this.Controls.Add(this.gb_limitGroup);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gb_WebApi);
             this.Controls.Add(this.gb_msgSettings);
             this.Controls.Add(this.gb_basic);
             this.Controls.Add(this.gb_operation);
             this.Controls.Add(this.gb_sensitiveWords);
             this.Controls.Add(this.gb_switches);
+            this.Controls.Add(this.cb_webApiEnable);
             this.MaximizeBox = false;
             this.Name = "ConsoleWindow";
             this.Text = "空格二号机 - 控制台";
@@ -537,11 +576,12 @@
             this.gb_basic.PerformLayout();
             this.gb_msgSettings.ResumeLayout(false);
             this.gb_msgSettings.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gb_WebApi.ResumeLayout(false);
+            this.gb_WebApi.PerformLayout();
             this.gb_limitGroup.ResumeLayout(false);
             this.gb_limitGroup.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -564,7 +604,7 @@
         private System.Windows.Forms.Button btn_reset;
         private System.Windows.Forms.Label lbl_newSensitiveWord;
         private System.Windows.Forms.GroupBox gb_basic;
-        private System.Windows.Forms.TextBox tb_botQQ;
+        private System.Windows.Forms.TextBox tb_ownerQQ;
         private System.Windows.Forms.Label lbl_botQQ;
         private System.Windows.Forms.GroupBox gb_msgSettings;
         private System.Windows.Forms.TextBox tb_groupWelcomeMsg;
@@ -573,7 +613,7 @@
         private System.Windows.Forms.Label lbl_newFriendMsg;
         private System.Windows.Forms.CheckBox cb_autoAgreePersonal;
         private System.Windows.Forms.Label lbl_personalSwitches;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gb_WebApi;
         private System.Windows.Forms.TextBox tb_webApiSecret;
         private System.Windows.Forms.Label lbl_webApiSecret;
         private System.Windows.Forms.TextBox tb_webApiKey;
@@ -584,13 +624,15 @@
         private System.Windows.Forms.Label lbl_webApiConfig;
         private System.Windows.Forms.Button btn_webApiTest;
         private System.Windows.Forms.RichTextBox rb_webApiConfig;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cb_enableBotinGroup;
         private System.Windows.Forms.GroupBox gb_limitGroup;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lb_groupWhiteList;
         private System.Windows.Forms.Button btn_removeGroupWhiteList;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_enableGroupNumber;
         private System.Windows.Forms.Button btn_addGroupWhiteList;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label lbl_otherSwitches;
     }
 }
 
