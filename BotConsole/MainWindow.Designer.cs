@@ -65,16 +65,25 @@
             this.tb_webApi = new System.Windows.Forms.TextBox();
             this.lbl_webApi = new System.Windows.Forms.Label();
             this.cb_webApiEnable = new System.Windows.Forms.CheckBox();
+            this.gb_limitGroup = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.lb_groupWhiteList = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btn_removeGroupWhiteList = new System.Windows.Forms.Button();
+            this.btn_addGroupWhiteList = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.gb_switches.SuspendLayout();
             this.gb_sensitiveWords.SuspendLayout();
             this.gb_operation.SuspendLayout();
             this.gb_basic.SuspendLayout();
             this.gb_msgSettings.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.gb_limitGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // gb_switches
             // 
+            this.gb_switches.Controls.Add(this.checkBox1);
             this.gb_switches.Controls.Add(this.cb_autoAgreePersonal);
             this.gb_switches.Controls.Add(this.lbl_personalSwitches);
             this.gb_switches.Controls.Add(this.lbl_groupSwitches);
@@ -83,7 +92,7 @@
             this.gb_switches.Controls.Add(this.cb_welcomeMsg);
             this.gb_switches.Location = new System.Drawing.Point(12, 12);
             this.gb_switches.Name = "gb_switches";
-            this.gb_switches.Size = new System.Drawing.Size(139, 437);
+            this.gb_switches.Size = new System.Drawing.Size(158, 437);
             this.gb_switches.TabIndex = 0;
             this.gb_switches.TabStop = false;
             this.gb_switches.Text = "开关";
@@ -155,9 +164,9 @@
             this.gb_sensitiveWords.Controls.Add(this.btn_addSensitiveWord);
             this.gb_sensitiveWords.Controls.Add(this.tb_newSensitiveWord);
             this.gb_sensitiveWords.Controls.Add(this.lb_sensitiveWords);
-            this.gb_sensitiveWords.Location = new System.Drawing.Point(157, 12);
+            this.gb_sensitiveWords.Location = new System.Drawing.Point(176, 12);
             this.gb_sensitiveWords.Name = "gb_sensitiveWords";
-            this.gb_sensitiveWords.Size = new System.Drawing.Size(274, 437);
+            this.gb_sensitiveWords.Size = new System.Drawing.Size(262, 215);
             this.gb_sensitiveWords.TabIndex = 1;
             this.gb_sensitiveWords.TabStop = false;
             this.gb_sensitiveWords.Text = "屏蔽词";
@@ -166,7 +175,7 @@
             // 
             this.lbl_newSensitiveWord.AutoSize = true;
             this.lbl_newSensitiveWord.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_newSensitiveWord.Location = new System.Drawing.Point(159, 322);
+            this.lbl_newSensitiveWord.Location = new System.Drawing.Point(146, 106);
             this.lbl_newSensitiveWord.Name = "lbl_newSensitiveWord";
             this.lbl_newSensitiveWord.Size = new System.Drawing.Size(53, 12);
             this.lbl_newSensitiveWord.TabIndex = 5;
@@ -174,7 +183,7 @@
             // 
             // btn_delSensitiveWord
             // 
-            this.btn_delSensitiveWord.Location = new System.Drawing.Point(159, 398);
+            this.btn_delSensitiveWord.Location = new System.Drawing.Point(146, 182);
             this.btn_delSensitiveWord.Name = "btn_delSensitiveWord";
             this.btn_delSensitiveWord.Size = new System.Drawing.Size(109, 23);
             this.btn_delSensitiveWord.TabIndex = 4;
@@ -183,7 +192,7 @@
             // 
             // btn_addSensitiveWord
             // 
-            this.btn_addSensitiveWord.Location = new System.Drawing.Point(159, 369);
+            this.btn_addSensitiveWord.Location = new System.Drawing.Point(146, 153);
             this.btn_addSensitiveWord.Name = "btn_addSensitiveWord";
             this.btn_addSensitiveWord.Size = new System.Drawing.Size(109, 23);
             this.btn_addSensitiveWord.TabIndex = 3;
@@ -192,7 +201,7 @@
             // 
             // tb_newSensitiveWord
             // 
-            this.tb_newSensitiveWord.Location = new System.Drawing.Point(159, 342);
+            this.tb_newSensitiveWord.Location = new System.Drawing.Point(146, 126);
             this.tb_newSensitiveWord.Name = "tb_newSensitiveWord";
             this.tb_newSensitiveWord.Size = new System.Drawing.Size(109, 21);
             this.tb_newSensitiveWord.TabIndex = 1;
@@ -203,7 +212,7 @@
             this.lb_sensitiveWords.ItemHeight = 12;
             this.lb_sensitiveWords.Location = new System.Drawing.Point(6, 21);
             this.lb_sensitiveWords.Name = "lb_sensitiveWords";
-            this.lb_sensitiveWords.Size = new System.Drawing.Size(147, 400);
+            this.lb_sensitiveWords.Size = new System.Drawing.Size(134, 184);
             this.lb_sensitiveWords.TabIndex = 0;
             // 
             // gb_operation
@@ -212,7 +221,7 @@
             this.gb_operation.Controls.Add(this.btn_save);
             this.gb_operation.Controls.Add(this.btn_cancel);
             this.gb_operation.Controls.Add(this.btn_reset);
-            this.gb_operation.Location = new System.Drawing.Point(437, 405);
+            this.gb_operation.Location = new System.Drawing.Point(444, 405);
             this.gb_operation.Name = "gb_operation";
             this.gb_operation.Size = new System.Drawing.Size(335, 44);
             this.gb_operation.TabIndex = 2;
@@ -260,7 +269,7 @@
             // 
             this.gb_basic.Controls.Add(this.tb_botQQ);
             this.gb_basic.Controls.Add(this.lbl_botQQ);
-            this.gb_basic.Location = new System.Drawing.Point(437, 13);
+            this.gb_basic.Location = new System.Drawing.Point(444, 13);
             this.gb_basic.Name = "gb_basic";
             this.gb_basic.Size = new System.Drawing.Size(335, 57);
             this.gb_basic.TabIndex = 3;
@@ -290,7 +299,7 @@
             this.gb_msgSettings.Controls.Add(this.lbl_groupWelcomeMsg);
             this.gb_msgSettings.Controls.Add(this.tb_newFriendMsg);
             this.gb_msgSettings.Controls.Add(this.lbl_newFriendMsg);
-            this.gb_msgSettings.Location = new System.Drawing.Point(437, 76);
+            this.gb_msgSettings.Location = new System.Drawing.Point(444, 76);
             this.gb_msgSettings.Name = "gb_msgSettings";
             this.gb_msgSettings.Size = new System.Drawing.Size(335, 85);
             this.gb_msgSettings.TabIndex = 4;
@@ -341,7 +350,7 @@
             this.groupBox1.Controls.Add(this.tb_webApi);
             this.groupBox1.Controls.Add(this.lbl_webApi);
             this.groupBox1.Controls.Add(this.cb_webApiEnable);
-            this.groupBox1.Location = new System.Drawing.Point(437, 171);
+            this.groupBox1.Location = new System.Drawing.Point(444, 171);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(335, 228);
             this.groupBox1.TabIndex = 5;
@@ -435,12 +444,81 @@
             this.cb_webApiEnable.UseVisualStyleBackColor = true;
             this.cb_webApiEnable.CheckedChanged += new System.EventHandler(this.cb_webApiEnable_CheckedChanged);
             // 
+            // gb_limitGroup
+            // 
+            this.gb_limitGroup.Controls.Add(this.label1);
+            this.gb_limitGroup.Controls.Add(this.lb_groupWhiteList);
+            this.gb_limitGroup.Controls.Add(this.btn_removeGroupWhiteList);
+            this.gb_limitGroup.Controls.Add(this.textBox1);
+            this.gb_limitGroup.Controls.Add(this.btn_addGroupWhiteList);
+            this.gb_limitGroup.Location = new System.Drawing.Point(176, 233);
+            this.gb_limitGroup.Name = "gb_limitGroup";
+            this.gb_limitGroup.Size = new System.Drawing.Size(262, 216);
+            this.gb_limitGroup.TabIndex = 6;
+            this.gb_limitGroup.TabStop = false;
+            this.gb_limitGroup.Text = "群白名单";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(10, 108);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(132, 16);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "限定启用机器人的群";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // lb_groupWhiteList
+            // 
+            this.lb_groupWhiteList.FormattingEnabled = true;
+            this.lb_groupWhiteList.ItemHeight = 12;
+            this.lb_groupWhiteList.Location = new System.Drawing.Point(6, 20);
+            this.lb_groupWhiteList.Name = "lb_groupWhiteList";
+            this.lb_groupWhiteList.Size = new System.Drawing.Size(134, 184);
+            this.lb_groupWhiteList.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(146, 105);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "群号";
+            // 
+            // btn_removeGroupWhiteList
+            // 
+            this.btn_removeGroupWhiteList.Location = new System.Drawing.Point(146, 181);
+            this.btn_removeGroupWhiteList.Name = "btn_removeGroupWhiteList";
+            this.btn_removeGroupWhiteList.Size = new System.Drawing.Size(109, 23);
+            this.btn_removeGroupWhiteList.TabIndex = 8;
+            this.btn_removeGroupWhiteList.Text = "移除选中";
+            this.btn_removeGroupWhiteList.UseVisualStyleBackColor = true;
+            // 
+            // btn_addGroupWhiteList
+            // 
+            this.btn_addGroupWhiteList.Location = new System.Drawing.Point(146, 152);
+            this.btn_addGroupWhiteList.Name = "btn_addGroupWhiteList";
+            this.btn_addGroupWhiteList.Size = new System.Drawing.Size(109, 23);
+            this.btn_addGroupWhiteList.TabIndex = 7;
+            this.btn_addGroupWhiteList.Text = "添加";
+            this.btn_addGroupWhiteList.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(146, 125);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(109, 21);
+            this.textBox1.TabIndex = 6;
+            // 
             // ConsoleWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(792, 461);
+            this.Controls.Add(this.gb_limitGroup);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_msgSettings);
             this.Controls.Add(this.gb_basic);
@@ -461,6 +539,8 @@
             this.gb_msgSettings.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gb_limitGroup.ResumeLayout(false);
+            this.gb_limitGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -504,6 +584,13 @@
         private System.Windows.Forms.Label lbl_webApiConfig;
         private System.Windows.Forms.Button btn_webApiTest;
         private System.Windows.Forms.RichTextBox rb_webApiConfig;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.GroupBox gb_limitGroup;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox lb_groupWhiteList;
+        private System.Windows.Forms.Button btn_removeGroupWhiteList;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btn_addGroupWhiteList;
     }
 }
 
