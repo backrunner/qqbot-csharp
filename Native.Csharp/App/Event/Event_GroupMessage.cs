@@ -156,6 +156,7 @@ namespace Native.Csharp.App.Event
                 #endregion
 
                 //不分权限均予以执行
+                #region == 手动复读 ==
                 if (e.Msg.Contains("复读") && e.Msg.IndexOf("复读") == 0 && !e.Msg.Contains("复读机"))
                 {
                     if (e.Msg.IndexOf("复读一下") == 0)
@@ -170,6 +171,7 @@ namespace Native.Csharp.App.Event
                     }
                     RepeatProcessor.ManualRepeat(e);
                 }
+                #endregion
             }
             else
             {
@@ -228,11 +230,7 @@ namespace Native.Csharp.App.Event
             //本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             //这里处理消息
 
-            //发送入群欢迎消息（仅对30秒内的消息有效）
-            if (e.BeingOperateQQ != SettingsController.settings.BotQQ && (DateTime.Now - e.SendTime).TotalSeconds <= 30)
-            {
-                Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.BeingOperateQQ) + SettingsController.settings.GroupWelcomeMessage);
-            }
+            GroupManageProcessor.SendWelcomeMessage(e);
 
             e.Handled = true;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
         }
@@ -247,11 +245,7 @@ namespace Native.Csharp.App.Event
             //本子程序会在酷Q【线程】中被调用, 请注意使用对象等需要初始化(ConIntialize, CoUninitialize).
             //这里处理消息
 
-            //发送入群欢迎消息（仅对30秒内的消息有效）
-            if (e.BeingOperateQQ != SettingsController.settings.BotQQ && (DateTime.Now - e.SendTime).TotalSeconds <= 30)
-            {
-                Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.BeingOperateQQ) + SettingsController.settings.GroupWelcomeMessage);
-            }
+            GroupManageProcessor.SendWelcomeMessage(e);
 
             e.Handled = true;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
         }
@@ -295,9 +289,7 @@ namespace Native.Csharp.App.Event
         {
             //本子程序会在酷Q【线程】中被调用, 请注意使用对象等需要初始化(ConIntialize, CoUninitialize).
             //这里处理消息
-                        
-
-            e.Handled = false;  //关于返回说明, 请参见 "Event_ReceiveMessage.ReceiveFriendMessage" 方法
+            GroupManageProcessor.AutoAgreeAddGroupRequest(e);
         }
 
         /// <summary>

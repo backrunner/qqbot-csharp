@@ -3,6 +3,7 @@ using BackRunner.QQBot.Utils;
 using Native.Csharp.App;
 using Native.Csharp.App.Model;
 using Native.Csharp.Sdk.Cqp.Model;
+using Native.Csharp.Sdk.Cqp.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -223,6 +224,59 @@ namespace BackRunner.QQBot.Processors
                 Common.CqApi.SendGroupMessage(e.FromGroup, "本机不是群主，不能移除成员的专属头衔");
             }
         }
+        #endregion
+
+        #region == 消息 ==
+        public static void SendWelcomeMessage(GroupMemberAlterEventArgs e)
+        {
+            if (SettingsController.settings.GroupWelcomeMessageEnabled)
+            {
+                //发送入群欢迎消息（仅对30秒内的消息有效）
+                if (e.BeingOperateQQ != SettingsController.settings.BotQQ && (DateTime.Now - e.SendTime).TotalSeconds <= 30)
+                {
+                    Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.BeingOperateQQ) + SettingsController.settings.GroupWelcomeMessage);
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region == 请求 ==
+        //自动同意入群
+        public static void AutoAgreeAddGroupRequest(GroupAddRequestEventArgs e)
+        {
+            //检查开关和白名单
+            if (SettingsController.settings.AutoAgreeGroup)
+            {
+                if (SettingsController.settings.GroupWhiteListEnabled)
+                {
+                    if (SettingsController.settings.GroupWhiteList.Contains(e.FromGroup))
+                    {
+                        Common.CqApi.SetGroupAddRequest(e.Tag, RequestType.GroupAdd, ResponseType.PASS, null);
+                        e.Handled = true;
+                        return;
+                    } else
+                    {
+                        e.Handled = false;
+                        return;
+                    }
+                }
+                else
+                {
+                    Common.CqApi.SetGroupAddRequest(e.Tag, RequestType.GroupAdd, ResponseType.PASS, null);
+                    e.Handled = true;
+                    return;
+                }
+                
+            } else
+            {
+                e.Handled = false;
+            }
+        }
+        #endregion
+
+        #region == 主人通知 ==
         #endregion
     }
 }
