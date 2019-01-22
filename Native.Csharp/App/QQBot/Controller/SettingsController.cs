@@ -23,8 +23,11 @@ namespace BackRunner.QQBot.Controller
         private static CheckBox cb_welcomeMsg;
         private static CheckBox cb_autoAgreePersonal;
         private static CheckBox cb_enableBotinGroup;
+        private static CheckBox cb_ownerNotification;
+        private static CheckBox cb_seriousWordCheck;
         private static ListBox lb_sensitiveWords;
         private static ListBox lb_groupWhiteList;
+        private static TextBox tb_sensitiveWordBanTime;
         private static GroupBox gb_limitGroup;
         private static TextBox tb_ownerQQ;
         private static TextBox tb_groupWelcomeMsg;
@@ -66,11 +69,14 @@ namespace BackRunner.QQBot.Controller
             cb_welcomeMsg = (CheckBox)WinformHelper.FindControl(window, "cb_welcomeMsg");            
             cb_autoAgreePersonal = (CheckBox)WinformHelper.FindControl(window, "cb_autoAgreePersonal");
             cb_enableBotinGroup = (CheckBox)WinformHelper.FindControl(window, "cb_enableBotinGroup");
+            cb_ownerNotification = (CheckBox)WinformHelper.FindControl(window, "cb_ownerNotification");
+            cb_seriousWordCheck = (CheckBox)WinformHelper.FindControl(window, "cb_seriousWordCheck");
             #endregion
 
             #region == 敏感词 ==
             lb_sensitiveWords = (ListBox)WinformHelper.FindControl(window, "lb_sensitiveWords");
             lb_groupWhiteList = (ListBox)WinformHelper.FindControl(window, "lb_groupWhiteList");
+            tb_sensitiveWordBanTime = (TextBox)WinformHelper.FindControl(window, "tb_sensitiveWordBanTime");
             #endregion
 
             #region == 群白名单 ==
@@ -102,7 +108,10 @@ namespace BackRunner.QQBot.Controller
 
             //初始化
             #region == 基本信息 ==
-            tb_ownerQQ.Text = settings.OwnerQQ.ToString();
+            if (settings.OwnerQQ > 0)
+            {
+                tb_ownerQQ.Text = settings.OwnerQQ.ToString();
+            }
             #endregion
 
             #region == 开关 ==
@@ -111,9 +120,12 @@ namespace BackRunner.QQBot.Controller
             cb_welcomeMsg.Checked = settings.GroupWelcomeMessageEnabled;
             cb_autoAgreePersonal.Checked = settings.AutoAgreeNewFriend;
             cb_enableBotinGroup.Checked = settings.GroupWhiteListEnabled;
+            cb_ownerNotification.Checked = settings.OwnerNotificationEnabled;
+            cb_seriousWordCheck.Checked = settings.SeriousWordCheckEnabled;
             #endregion
 
             #region == 敏感词 ==
+            tb_sensitiveWordBanTime.Text = settings.SensitiveWordBanTime.ToString();
             foreach (string word in settings.SensitiveWords)
             {
                 lb_sensitiveWords.Items.Add(word);
@@ -122,6 +134,10 @@ namespace BackRunner.QQBot.Controller
 
             #region == 群白名单 ==
             gb_limitGroup.Enabled = settings.GroupWhiteListEnabled;
+            foreach(long groupnumber in settings.GroupWhiteList)
+            {
+                lb_groupWhiteList.Items.Add(groupnumber);
+            }
             #endregion
 
             #region == 消息 ==
@@ -147,6 +163,12 @@ namespace BackRunner.QQBot.Controller
             //按钮事件绑定
             btn_apply.Click += Btn_apply_Click;
             btn_save.Click += Btn_save_Click;
+            btn_reset.Click += Btn_reset_Click;
+        }
+
+        private static void Btn_reset_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private static void Btn_apply_Click(object sender, EventArgs e)
@@ -163,7 +185,7 @@ namespace BackRunner.QQBot.Controller
         }
         #endregion
 
-        #region == 设置的保存 ==
+        #region == 设置保存 ==
         public static void ApplySettings()
         {
             #region == 开关 ==
@@ -172,10 +194,18 @@ namespace BackRunner.QQBot.Controller
             settings.AutoRepeat = GetBoolFromCheckBox(cb_autoRepeat, settings.AutoRepeat);
             settings.GroupWhiteListEnabled = GetBoolFromCheckBox(cb_enableBotinGroup, settings.GroupWhiteListEnabled);
             settings.GroupWelcomeMessageEnabled = GetBoolFromCheckBox(cb_welcomeMsg, settings.GroupWelcomeMessageEnabled);
+            settings.OwnerNotificationEnabled = GetBoolFromCheckBox(cb_ownerNotification, settings.OwnerNotificationEnabled);
+            settings.SeriousWordCheckEnabled = GetBoolFromCheckBox(cb_seriousWordCheck, settings.SeriousWordCheckEnabled);
             #endregion
 
             #region == 敏感词 ==
             settings.SensitiveWords = lb_sensitiveWords.Items.Cast<string>().ToList();
+            long sensitiveWordBanTime = -1;
+            long.TryParse(tb_sensitiveWordBanTime.Text, out sensitiveWordBanTime);
+            if (sensitiveWordBanTime >= 0)
+            {
+                settings.SensitiveWordBanTime = sensitiveWordBanTime;
+            }
             #endregion
 
             #region == 群白名单 ==
@@ -199,6 +229,8 @@ namespace BackRunner.QQBot.Controller
             settings.WebApiKey = GetStringFromTextBox(tb_webApiKey);
             settings.WebApiSecret = GetStringFromTextBox(tb_webApiSecret);
             #endregion
+
+            btn_apply.Enabled = false;
         }        
         public static void SaveSettings()
         {
@@ -207,10 +239,18 @@ namespace BackRunner.QQBot.Controller
             {
                 string json = JsonConvert.SerializeObject(settings);
                 File.WriteAllText(Common.SettingFile, json);
+                btn_save.Enabled = false;
             } catch (Exception e)
             {
                 MessageBox.Show("保存设置出现错误:\n" + e.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        #endregion
+
+        #region == 设置重置 ==
+        private static void ResetSettings()
+        {
+
         }
         #endregion
 

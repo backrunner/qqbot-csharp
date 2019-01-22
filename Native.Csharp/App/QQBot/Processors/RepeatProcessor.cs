@@ -1,5 +1,7 @@
 ﻿using Native.Csharp.App.Model;
 using BackRunner.QQBot.Models;
+using BackRunner.QQBot.Controller;
+using BackRunner.QQBot.Processors;
 using Native.Csharp.Sdk.Cqp.Api;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,25 @@ namespace BackRunner.QQBot.Processors
     public static class RepeatProcessor
     {
         private static List<GroupMessage> lastGroupMessage = new List<GroupMessage>();
+
+        #region == 手动复读 ==
+        public static void ManualRepeat(GroupMessageEventArgs e)
+        {
+            //敏感词检查
+            if (SettingsController.settings.SensitiveWords.Count > 0)
+            {
+                foreach (string word in SettingsController.settings.SensitiveWords)
+                {
+                    if (e.Msg.Contains(word))
+                    {
+                        GroupManageProcessor.BanSensitiveWordUser(e);
+                        return;
+                    }
+                }
+            }
+            Common.CqApi.SendGroupMessage(e.FromGroup, e.Msg);
+        }
+        #endregion
 
         #region == 自动复读 ==
         public static void Process(GroupMessageEventArgs e)
@@ -35,9 +56,9 @@ namespace BackRunner.QQBot.Processors
                     {
                         gm.RepeatCount++;   //复读计数器递增
                         gm.FromQQ = e.FromQQ;   //更新QQ
-                        if (gm.RepeatCount >= Common.Random.Next(2,5))
+                        if (gm.RepeatCount >= Common.Random.Next(1,5))
                         {
-                            //当复读次数达到随机2-5次的时候进行复读
+                            //当复读次数达到随机1-5次的时候进行复读
                             Common.CqApi.SendGroupMessage(e.FromGroup, e.Msg);
                             gm.isRepeated = true;
                         }

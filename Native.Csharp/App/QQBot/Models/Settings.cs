@@ -24,9 +24,12 @@ namespace BackRunner.QQBot.Models
         public bool GroupWelcomeMessageEnabled { get; set; }
         public bool AutoAgreeNewFriend { get; set; }
         public bool GroupWhiteListEnabled { get; set; }
+        public bool OwnerNotificationEnabled { get; set; }
+        public bool SeriousWordCheckEnabled { get; set; }
 
         //屏蔽词
         public List<string> SensitiveWords;
+        public long SensitiveWordBanTime;
 
         //群白名单
         public List<long> GroupWhiteList;
@@ -58,6 +61,10 @@ namespace BackRunner.QQBot.Models
             GroupWelcomeMessage = "欢迎入群~";
             AutoAgreeNewFriend = false;
             GroupWhiteListEnabled = false;
+            #endregion
+
+            #region == 数值 ==
+            SensitiveWordBanTime = 60;
             #endregion
 
             #region == WebApi ==

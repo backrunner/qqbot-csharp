@@ -134,6 +134,14 @@ namespace BackRunner.QQBot.Processors
                 Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.FromQQ) + "你需要先告诉我要解禁谁");
             }
         }
+
+        //敏感词禁言
+        public static void BanSensitiveWordUser(GroupMessageEventArgs e)
+        {
+            TimeSpan banTime = new TimeSpan(0,0,(int)SettingsController.settings.SensitiveWordBanTime);
+            Common.CqApi.SetGroupBanSpeak(e.FromGroup, e.FromQQ, banTime);
+            Common.CqApi.SendGroupMessage(e.FromGroup, Common.CqApi.CqCode_At(e.FromQQ) + "因为触发了敏感词被禁言。");
+        }
         #endregion
 
         #region == 头衔 ==

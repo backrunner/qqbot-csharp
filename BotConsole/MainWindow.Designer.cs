@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.gb_switches = new System.Windows.Forms.GroupBox();
+            this.cb_ownerNotification = new System.Windows.Forms.CheckBox();
+            this.lbl_otherSwitches = new System.Windows.Forms.Label();
             this.cb_enableBotinGroup = new System.Windows.Forms.CheckBox();
             this.cb_autoAgreePersonal = new System.Windows.Forms.CheckBox();
             this.lbl_personalSwitches = new System.Windows.Forms.Label();
@@ -72,8 +74,9 @@
             this.btn_removeGroupWhiteList = new System.Windows.Forms.Button();
             this.tb_enableGroupNumber = new System.Windows.Forms.TextBox();
             this.btn_addGroupWhiteList = new System.Windows.Forms.Button();
-            this.lbl_otherSwitches = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cb_seriousWordCheck = new System.Windows.Forms.CheckBox();
+            this.lbl_swBanTime = new System.Windows.Forms.Label();
+            this.tb_sensitiveWordBanTime = new System.Windows.Forms.TextBox();
             this.gb_switches.SuspendLayout();
             this.gb_sensitiveWords.SuspendLayout();
             this.gb_operation.SuspendLayout();
@@ -85,7 +88,8 @@
             // 
             // gb_switches
             // 
-            this.gb_switches.Controls.Add(this.checkBox1);
+            this.gb_switches.Controls.Add(this.cb_seriousWordCheck);
+            this.gb_switches.Controls.Add(this.cb_ownerNotification);
             this.gb_switches.Controls.Add(this.lbl_otherSwitches);
             this.gb_switches.Controls.Add(this.cb_enableBotinGroup);
             this.gb_switches.Controls.Add(this.cb_autoAgreePersonal);
@@ -101,6 +105,27 @@
             this.gb_switches.TabStop = false;
             this.gb_switches.Text = "开关";
             // 
+            // cb_ownerNotification
+            // 
+            this.cb_ownerNotification.AutoSize = true;
+            this.cb_ownerNotification.Location = new System.Drawing.Point(10, 231);
+            this.cb_ownerNotification.Name = "cb_ownerNotification";
+            this.cb_ownerNotification.Size = new System.Drawing.Size(96, 16);
+            this.cb_ownerNotification.TabIndex = 8;
+            this.cb_ownerNotification.Text = "启用主人通知";
+            this.cb_ownerNotification.UseVisualStyleBackColor = true;
+            this.cb_ownerNotification.CheckedChanged += new System.EventHandler(this.cb_ownerNotification_CheckedChanged);
+            // 
+            // lbl_otherSwitches
+            // 
+            this.lbl_otherSwitches.AutoSize = true;
+            this.lbl_otherSwitches.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_otherSwitches.Location = new System.Drawing.Point(8, 208);
+            this.lbl_otherSwitches.Name = "lbl_otherSwitches";
+            this.lbl_otherSwitches.Size = new System.Drawing.Size(29, 12);
+            this.lbl_otherSwitches.TabIndex = 7;
+            this.lbl_otherSwitches.Text = "其他";
+            // 
             // cb_enableBotinGroup
             // 
             this.cb_enableBotinGroup.AutoSize = true;
@@ -108,14 +133,14 @@
             this.cb_enableBotinGroup.Name = "cb_enableBotinGroup";
             this.cb_enableBotinGroup.Size = new System.Drawing.Size(132, 16);
             this.cb_enableBotinGroup.TabIndex = 6;
-            this.cb_enableBotinGroup.Text = "限定启用机器人的群";
+            this.cb_enableBotinGroup.Text = "启用部分功能白名单";
             this.cb_enableBotinGroup.UseVisualStyleBackColor = true;
             this.cb_enableBotinGroup.CheckedChanged += new System.EventHandler(this.cb_enableBotinGroup_CheckedChanged);
             // 
             // cb_autoAgreePersonal
             // 
             this.cb_autoAgreePersonal.AutoSize = true;
-            this.cb_autoAgreePersonal.Location = new System.Drawing.Point(10, 159);
+            this.cb_autoAgreePersonal.Location = new System.Drawing.Point(10, 180);
             this.cb_autoAgreePersonal.Name = "cb_autoAgreePersonal";
             this.cb_autoAgreePersonal.Size = new System.Drawing.Size(108, 16);
             this.cb_autoAgreePersonal.TabIndex = 5;
@@ -127,7 +152,7 @@
             // 
             this.lbl_personalSwitches.AutoSize = true;
             this.lbl_personalSwitches.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_personalSwitches.Location = new System.Drawing.Point(8, 137);
+            this.lbl_personalSwitches.Location = new System.Drawing.Point(8, 158);
             this.lbl_personalSwitches.Name = "lbl_personalSwitches";
             this.lbl_personalSwitches.Size = new System.Drawing.Size(53, 12);
             this.lbl_personalSwitches.TabIndex = 4;
@@ -178,6 +203,8 @@
             // 
             // gb_sensitiveWords
             // 
+            this.gb_sensitiveWords.Controls.Add(this.tb_sensitiveWordBanTime);
+            this.gb_sensitiveWords.Controls.Add(this.lbl_swBanTime);
             this.gb_sensitiveWords.Controls.Add(this.lbl_newSensitiveWord);
             this.gb_sensitiveWords.Controls.Add(this.btn_delSensitiveWord);
             this.gb_sensitiveWords.Controls.Add(this.btn_addSensitiveWord);
@@ -307,6 +334,8 @@
             this.tb_ownerQQ.Name = "tb_ownerQQ";
             this.tb_ownerQQ.Size = new System.Drawing.Size(252, 21);
             this.tb_ownerQQ.TabIndex = 1;
+            this.tb_ownerQQ.TextChanged += new System.EventHandler(this.tb_ownerQQ_TextChanged);
+            this.tb_ownerQQ.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ownerQQ_KeyPress);
             // 
             // lbl_botQQ
             // 
@@ -336,6 +365,7 @@
             this.tb_groupWelcomeMsg.Name = "tb_groupWelcomeMsg";
             this.tb_groupWelcomeMsg.Size = new System.Drawing.Size(252, 21);
             this.tb_groupWelcomeMsg.TabIndex = 3;
+            this.tb_groupWelcomeMsg.TextChanged += new System.EventHandler(this.tb_groupWelcomeMsg_TextChanged);
             // 
             // lbl_groupWelcomeMsg
             // 
@@ -352,6 +382,7 @@
             this.tb_newFriendMsg.Name = "tb_newFriendMsg";
             this.tb_newFriendMsg.Size = new System.Drawing.Size(252, 21);
             this.tb_newFriendMsg.TabIndex = 1;
+            this.tb_newFriendMsg.TextChanged += new System.EventHandler(this.tb_newFriendMsg_TextChanged);
             // 
             // lbl_newFriendMsg
             // 
@@ -479,7 +510,7 @@
             this.gb_limitGroup.Size = new System.Drawing.Size(262, 216);
             this.gb_limitGroup.TabIndex = 6;
             this.gb_limitGroup.TabStop = false;
-            this.gb_limitGroup.Text = "群白名单";
+            this.gb_limitGroup.Text = "群管部分功能白名单";
             // 
             // label1
             // 
@@ -530,25 +561,33 @@
             this.btn_addGroupWhiteList.UseVisualStyleBackColor = true;
             this.btn_addGroupWhiteList.Click += new System.EventHandler(this.btn_addGroupWhiteList_Click);
             // 
-            // lbl_otherSwitches
+            // cb_seriousWordCheck
             // 
-            this.lbl_otherSwitches.AutoSize = true;
-            this.lbl_otherSwitches.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_otherSwitches.Location = new System.Drawing.Point(8, 187);
-            this.lbl_otherSwitches.Name = "lbl_otherSwitches";
-            this.lbl_otherSwitches.Size = new System.Drawing.Size(29, 12);
-            this.lbl_otherSwitches.TabIndex = 7;
-            this.lbl_otherSwitches.Text = "其他";
+            this.cb_seriousWordCheck.AutoSize = true;
+            this.cb_seriousWordCheck.Location = new System.Drawing.Point(10, 130);
+            this.cb_seriousWordCheck.Name = "cb_seriousWordCheck";
+            this.cb_seriousWordCheck.Size = new System.Drawing.Size(132, 16);
+            this.cb_seriousWordCheck.TabIndex = 9;
+            this.cb_seriousWordCheck.Text = "启用严格敏感词检查";
+            this.cb_seriousWordCheck.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // lbl_swBanTime
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(10, 210);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(96, 16);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "启用主人通知";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.lbl_swBanTime.AutoSize = true;
+            this.lbl_swBanTime.Location = new System.Drawing.Point(146, 21);
+            this.lbl_swBanTime.Name = "lbl_swBanTime";
+            this.lbl_swBanTime.Size = new System.Drawing.Size(53, 12);
+            this.lbl_swBanTime.TabIndex = 6;
+            this.lbl_swBanTime.Text = "封禁时长";
+            // 
+            // tb_sensitiveWordBanTime
+            // 
+            this.tb_sensitiveWordBanTime.Location = new System.Drawing.Point(146, 37);
+            this.tb_sensitiveWordBanTime.Name = "tb_sensitiveWordBanTime";
+            this.tb_sensitiveWordBanTime.Size = new System.Drawing.Size(109, 21);
+            this.tb_sensitiveWordBanTime.TabIndex = 7;
+            this.tb_sensitiveWordBanTime.TextChanged += new System.EventHandler(this.tb_sensitiveWordBanTime_TextChanged);
+            this.tb_sensitiveWordBanTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_sensitiveWordBanTime_KeyPress);
             // 
             // ConsoleWindow
             // 
@@ -631,8 +670,11 @@
         private System.Windows.Forms.Button btn_removeGroupWhiteList;
         private System.Windows.Forms.TextBox tb_enableGroupNumber;
         private System.Windows.Forms.Button btn_addGroupWhiteList;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cb_ownerNotification;
         private System.Windows.Forms.Label lbl_otherSwitches;
+        private System.Windows.Forms.CheckBox cb_seriousWordCheck;
+        private System.Windows.Forms.TextBox tb_sensitiveWordBanTime;
+        private System.Windows.Forms.Label lbl_swBanTime;
     }
 }
 

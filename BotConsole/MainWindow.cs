@@ -47,6 +47,10 @@ namespace BackRunner.QQBot.BotConsole
             EnableOperateButtons();
             gb_limitGroup.Enabled = cb_enableBotinGroup.Checked;
         }
+        private void cb_ownerNotification_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableOperateButtons();
+        }
         #endregion       
 
         #region == 屏蔽词 ==
@@ -63,6 +67,16 @@ namespace BackRunner.QQBot.BotConsole
             {
                 MessageBox.Show("请输入你需要添加的屏蔽词。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void tb_sensitiveWordBanTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumberInputCheck(sender, e);
+        }
+
+        private void tb_sensitiveWordBanTime_TextChanged(object sender, EventArgs e)
+        {
+            EnableOperateButtons();
         }
 
         private void btn_delSensitiveWord_Click(object sender, EventArgs e)
@@ -91,9 +105,17 @@ namespace BackRunner.QQBot.BotConsole
         {
             if (tb_enableGroupNumber.Text.Length > 0)
             {
-                lb_groupWhiteList.Items.Add(tb_enableGroupNumber.Text);
-                tb_enableGroupNumber.Text = string.Empty;
-                EnableOperateButtons();
+                long groupnumber = -1;
+                long.TryParse(tb_enableGroupNumber.Text, out groupnumber);
+                if (groupnumber > 0)
+                {
+                    lb_groupWhiteList.Items.Add(groupnumber);
+                    tb_enableGroupNumber.Text = string.Empty;
+                    EnableOperateButtons();
+                } else
+                {
+                    MessageBox.Show("您输入的数据有误。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }                
             } else
             {
                 MessageBox.Show("请输入你需要添加的群号。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -101,6 +123,70 @@ namespace BackRunner.QQBot.BotConsole
         }
 
         private void tb_enableGroupNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumberInputCheck(sender, e);
+        }
+
+        private void btn_removeGroupWhiteList_Click(object sender, EventArgs e)
+        {
+            if (lb_groupWhiteList.SelectedIndex >= 0 && lb_groupWhiteList.SelectedIndex < lb_groupWhiteList.Items.Count)
+            {
+                lb_groupWhiteList.Items.RemoveAt(lb_groupWhiteList.SelectedIndex);
+                lb_groupWhiteList.SelectedIndex = -1;
+                EnableOperateButtons();
+                btn_removeGroupWhiteList.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("请选择你需要删除的群。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void lb_groupWhiteList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btn_removeGroupWhiteList.Enabled = true;
+        }
+        #endregion        
+
+        #region == 消息 ==
+        private void tb_newFriendMsg_TextChanged(object sender, EventArgs e)
+        {
+            EnableOperateButtons();
+        }
+
+        private void tb_groupWelcomeMsg_TextChanged(object sender, EventArgs e)
+        {
+            EnableOperateButtons();
+        }
+        #endregion
+
+        #region == 基本设置 ==
+        private void tb_ownerQQ_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumberInputCheck(sender, e);
+        }
+        private void tb_ownerQQ_TextChanged(object sender, EventArgs e)
+        {
+            EnableOperateButtons();
+        }
+        #endregion        
+
+        #region == 其他 ==
+        /// <summary>
+        /// 启用操作区的保存和应用按钮。
+        /// </summary>
+        private void EnableOperateButtons()
+        {
+            btn_save.Enabled = true;
+            btn_apply.Enabled = true;
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void NumberInputCheck(object sender, KeyPressEventArgs e)
         {
             //判断按键是不是要输入的类型。
             if (((int)e.KeyChar < 48 || (int)e.KeyChar > 57) && (int)e.KeyChar != 8 && (int)e.KeyChar != 46)
@@ -127,44 +213,6 @@ namespace BackRunner.QQBot.BotConsole
                 }
             }
         }
-
-        private void btn_removeGroupWhiteList_Click(object sender, EventArgs e)
-        {
-            if (lb_groupWhiteList.SelectedIndex >= 0 && lb_groupWhiteList.SelectedIndex < lb_groupWhiteList.Items.Count)
-            {
-                lb_groupWhiteList.Items.RemoveAt(lb_groupWhiteList.SelectedIndex);
-                lb_groupWhiteList.SelectedIndex = -1;
-                EnableOperateButtons();
-                btn_removeGroupWhiteList.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("请选择你需要删除的群。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void lb_groupWhiteList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btn_removeGroupWhiteList.Enabled = true;
-        }
-        #endregion
-
-        #region == 其他 ==
-        /// <summary>
-        /// 启用操作区的保存和应用按钮。
-        /// </summary>
-        private void EnableOperateButtons()
-        {
-            btn_save.Enabled = true;
-            btn_apply.Enabled = true;
-        }
-
-        private void btn_cancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        #endregion
-
-
+        #endregion        
     }
 }
