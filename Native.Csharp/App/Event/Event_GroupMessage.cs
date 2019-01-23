@@ -46,7 +46,21 @@ namespace Native.Csharp.App.Event
         {
             //本子程序会在酷Q【线程】中被调用，请注意使用对象等需要初始化(CoInitialize,CoUninitialize)。
             //这里处理消息
+            #region == 严格的敏感词过滤 ==
+            if (SettingsController.settings.SeriousWordCheckEnabled)
+            {
+                foreach(string word in SettingsController.settings.SensitiveWords)
+                {
+                    if (e.Msg.Contains(word))
+                    {
+                        GroupManageProcessor.BanSensitiveWordUser(e);
+                        return;
+                    }
+                }
+            }
+            #endregion
 
+            #region == 消息分类 ==
             //判断是否是@qqbot的消息
             if (e.Msg.IndexOf("[CQ:at,qq=" + SettingsController.settings.BotQQ.ToString() + "]") == 0)
             {
@@ -94,6 +108,7 @@ namespace Native.Csharp.App.Event
                 e.Handled = true;
                 #endregion
             }
+            #endregion
         }
 
         /// <summary>

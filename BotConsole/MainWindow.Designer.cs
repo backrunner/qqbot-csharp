@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gb_switches = new System.Windows.Forms.GroupBox();
+            this.cb_seriousWordCheck = new System.Windows.Forms.CheckBox();
             this.cb_ownerNotification = new System.Windows.Forms.CheckBox();
             this.lbl_otherSwitches = new System.Windows.Forms.Label();
             this.cb_enableBotinGroup = new System.Windows.Forms.CheckBox();
@@ -39,6 +40,8 @@
             this.cb_autoAgreeGroup = new System.Windows.Forms.CheckBox();
             this.cb_welcomeMsg = new System.Windows.Forms.CheckBox();
             this.gb_sensitiveWords = new System.Windows.Forms.GroupBox();
+            this.tb_sensitiveWordBanTime = new System.Windows.Forms.TextBox();
+            this.lbl_swBanTime = new System.Windows.Forms.Label();
             this.lbl_newSensitiveWord = new System.Windows.Forms.Label();
             this.btn_delSensitiveWord = new System.Windows.Forms.Button();
             this.btn_addSensitiveWord = new System.Windows.Forms.Button();
@@ -74,9 +77,6 @@
             this.btn_removeGroupWhiteList = new System.Windows.Forms.Button();
             this.tb_enableGroupNumber = new System.Windows.Forms.TextBox();
             this.btn_addGroupWhiteList = new System.Windows.Forms.Button();
-            this.cb_seriousWordCheck = new System.Windows.Forms.CheckBox();
-            this.lbl_swBanTime = new System.Windows.Forms.Label();
-            this.tb_sensitiveWordBanTime = new System.Windows.Forms.TextBox();
             this.gb_switches.SuspendLayout();
             this.gb_sensitiveWords.SuspendLayout();
             this.gb_operation.SuspendLayout();
@@ -104,6 +104,17 @@
             this.gb_switches.TabIndex = 0;
             this.gb_switches.TabStop = false;
             this.gb_switches.Text = "开关";
+            // 
+            // cb_seriousWordCheck
+            // 
+            this.cb_seriousWordCheck.AutoSize = true;
+            this.cb_seriousWordCheck.Location = new System.Drawing.Point(10, 130);
+            this.cb_seriousWordCheck.Name = "cb_seriousWordCheck";
+            this.cb_seriousWordCheck.Size = new System.Drawing.Size(132, 16);
+            this.cb_seriousWordCheck.TabIndex = 9;
+            this.cb_seriousWordCheck.Text = "启用严格敏感词检查";
+            this.cb_seriousWordCheck.UseVisualStyleBackColor = true;
+            this.cb_seriousWordCheck.CheckedChanged += new System.EventHandler(this.cb_seriousWordCheck_CheckedChanged);
             // 
             // cb_ownerNotification
             // 
@@ -216,6 +227,24 @@
             this.gb_sensitiveWords.TabIndex = 1;
             this.gb_sensitiveWords.TabStop = false;
             this.gb_sensitiveWords.Text = "屏蔽词";
+            // 
+            // tb_sensitiveWordBanTime
+            // 
+            this.tb_sensitiveWordBanTime.Location = new System.Drawing.Point(146, 37);
+            this.tb_sensitiveWordBanTime.Name = "tb_sensitiveWordBanTime";
+            this.tb_sensitiveWordBanTime.Size = new System.Drawing.Size(109, 21);
+            this.tb_sensitiveWordBanTime.TabIndex = 7;
+            this.tb_sensitiveWordBanTime.TextChanged += new System.EventHandler(this.tb_sensitiveWordBanTime_TextChanged);
+            this.tb_sensitiveWordBanTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_sensitiveWordBanTime_KeyPress);
+            // 
+            // lbl_swBanTime
+            // 
+            this.lbl_swBanTime.AutoSize = true;
+            this.lbl_swBanTime.Location = new System.Drawing.Point(146, 21);
+            this.lbl_swBanTime.Name = "lbl_swBanTime";
+            this.lbl_swBanTime.Size = new System.Drawing.Size(53, 12);
+            this.lbl_swBanTime.TabIndex = 6;
+            this.lbl_swBanTime.Text = "封禁时长";
             // 
             // lbl_newSensitiveWord
             // 
@@ -560,34 +589,6 @@
             this.btn_addGroupWhiteList.Text = "添加";
             this.btn_addGroupWhiteList.UseVisualStyleBackColor = true;
             this.btn_addGroupWhiteList.Click += new System.EventHandler(this.btn_addGroupWhiteList_Click);
-            // 
-            // cb_seriousWordCheck
-            // 
-            this.cb_seriousWordCheck.AutoSize = true;
-            this.cb_seriousWordCheck.Location = new System.Drawing.Point(10, 130);
-            this.cb_seriousWordCheck.Name = "cb_seriousWordCheck";
-            this.cb_seriousWordCheck.Size = new System.Drawing.Size(132, 16);
-            this.cb_seriousWordCheck.TabIndex = 9;
-            this.cb_seriousWordCheck.Text = "启用严格敏感词检查";
-            this.cb_seriousWordCheck.UseVisualStyleBackColor = true;
-            // 
-            // lbl_swBanTime
-            // 
-            this.lbl_swBanTime.AutoSize = true;
-            this.lbl_swBanTime.Location = new System.Drawing.Point(146, 21);
-            this.lbl_swBanTime.Name = "lbl_swBanTime";
-            this.lbl_swBanTime.Size = new System.Drawing.Size(53, 12);
-            this.lbl_swBanTime.TabIndex = 6;
-            this.lbl_swBanTime.Text = "封禁时长";
-            // 
-            // tb_sensitiveWordBanTime
-            // 
-            this.tb_sensitiveWordBanTime.Location = new System.Drawing.Point(146, 37);
-            this.tb_sensitiveWordBanTime.Name = "tb_sensitiveWordBanTime";
-            this.tb_sensitiveWordBanTime.Size = new System.Drawing.Size(109, 21);
-            this.tb_sensitiveWordBanTime.TabIndex = 7;
-            this.tb_sensitiveWordBanTime.TextChanged += new System.EventHandler(this.tb_sensitiveWordBanTime_TextChanged);
-            this.tb_sensitiveWordBanTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_sensitiveWordBanTime_KeyPress);
             // 
             // ConsoleWindow
             // 

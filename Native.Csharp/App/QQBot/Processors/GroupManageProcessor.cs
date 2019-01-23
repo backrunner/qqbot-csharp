@@ -1,5 +1,6 @@
 ﻿using BackRunner.QQBot.Controller;
 using BackRunner.QQBot.Utils;
+using BackRunner.QQBot.Processors;
 using Native.Csharp.App;
 using Native.Csharp.App.Model;
 using Native.Csharp.Sdk.Cqp.Model;
@@ -15,7 +16,10 @@ namespace BackRunner.QQBot.Processors
     public static class GroupManageProcessor
     {
         #region == 禁言 ==
-        //禁言
+        /// <summary>
+        /// 禁言群成员
+        /// </summary>
+        /// <param name="e"></param>
         public static void BanGroupSpeak(GroupMessageEventArgs e)
         {
             //判断是否有禁言目标
@@ -111,7 +115,10 @@ namespace BackRunner.QQBot.Processors
             }
         }
 
-        //解禁
+        /// <summary>
+        /// 对成员解除禁言
+        /// </summary>
+        /// <param name="e"></param>
         public static void UnBanGroupSpeak(GroupMessageEventArgs e)
         {
             //判断是否有禁言目标
@@ -136,7 +143,10 @@ namespace BackRunner.QQBot.Processors
             }
         }
 
-        //敏感词禁言
+        /// <summary>
+        /// 禁言触发了敏感词的用户，禁言时长为设置时长
+        /// </summary>
+        /// <param name="e"></param>
         public static void BanSensitiveWordUser(GroupMessageEventArgs e)
         {
             TimeSpan banTime = new TimeSpan(0,0,(int)SettingsController.settings.SensitiveWordBanTime);
@@ -254,6 +264,7 @@ namespace BackRunner.QQBot.Processors
                     if (SettingsController.settings.GroupWhiteList.Contains(e.FromGroup))
                     {
                         Common.CqApi.SetGroupAddRequest(e.Tag, RequestType.GroupAdd, ResponseType.PASS, null);
+                        AgreeGroupRequestNotify(e, DateTime.Now);
                         e.Handled = true;
                         return;
                     } else
@@ -265,6 +276,7 @@ namespace BackRunner.QQBot.Processors
                 else
                 {
                     Common.CqApi.SetGroupAddRequest(e.Tag, RequestType.GroupAdd, ResponseType.PASS, null);
+                    AgreeGroupRequestNotify(e, DateTime.Now);
                     e.Handled = true;
                     return;
                 }
@@ -277,6 +289,18 @@ namespace BackRunner.QQBot.Processors
         #endregion
 
         #region == 主人通知 ==
+        private static void AgreeGroupRequestNotify(GroupAddRequestEventArgs e, DateTime time)
+        {
+            QQ qqinfo;
+            Common.CqApi.GetQQInfo(e.FromQQ, out qqinfo);   //获取QQ信息
+            if (qqinfo == null)
+            {
+                OwnerNotificationProcessor.NotifyOwner("二号机在[" + time.ToString() + "]自动同意了(" + e.FromQQ.ToString() + ")加入群(" + e.FromGroup + ")的申请。");
+            } else
+            {
+                OwnerNotificationProcessor.NotifyOwner("二号机在[" + time.ToString() + "]自动同意了[" + qqinfo.Nick + "](" + e.FromQQ.ToString() + ")加入群(" + e.FromGroup + ")的申请。");
+            }
+        }
         #endregion
     }
 }

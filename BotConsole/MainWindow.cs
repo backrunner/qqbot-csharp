@@ -51,6 +51,10 @@ namespace BackRunner.QQBot.BotConsole
         {
             EnableOperateButtons();
         }
+        private void cb_seriousWordCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableOperateButtons();
+        }
         #endregion       
 
         #region == 屏蔽词 ==

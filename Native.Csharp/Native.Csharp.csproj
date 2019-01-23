@@ -99,6 +99,7 @@
     <Compile Include="App\QQBot\Models\GroupMessage.cs" />
     <Compile Include="App\QQBot\Models\Settings.cs" />
     <Compile Include="App\QQBot\Processors\GroupManageProcessor.cs" />
+    <Compile Include="App\QQBot\Processors\OwnerNotificationProcessor.cs" />
     <Compile Include="App\QQBot\Processors\RepeatProcessor.cs" />
     <Compile Include="App\QQBot\Utils\ChineseNumberConverter.cs" />
     <Compile Include="App\QQBot\Utils\WinformHelper.cs" />
