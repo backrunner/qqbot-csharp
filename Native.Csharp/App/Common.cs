@@ -31,20 +31,21 @@ namespace Native.Csharp.App
         /// <summary>
 		/// 程序共用的Random实例
 		/// </summary>
-		/// <summary>
-		/// 获取或设置当前 App 使用的 酷Q Api 接口实例
-		/// </summary>
-		public static CqApi CqApi { get; set; }
         public static Random Random { get; set; }
+
+        /// <summary>
+        /// 获取或设置当前 App 使用的 酷Q Api 接口实例
+        /// </summary>
+        public static CqApi CqApi { get; set; }        
 
         /// <summary>
 		/// 插件内共用的静态控制台窗体
 		/// </summary>
-
-		/// <summary>
-		/// 获取或设置当前 App 使用的依赖注入容器实例
-		/// </summary>
-		public static IUnityContainer UnityContainer { get; set; }
         public static ConsoleWindow ConsoleWindow { get; set; }
+
+        /// <summary>
+        /// 获取或设置当前 App 使用的依赖注入容器实例
+        /// </summary>
+        public static IUnityContainer UnityContainer { get; set; }        
 	}
 }

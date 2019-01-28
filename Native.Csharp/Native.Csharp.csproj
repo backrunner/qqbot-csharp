@@ -75,6 +75,12 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.9.2\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.9.2\lib\net45\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -82,20 +88,30 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=4.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.9.2\lib\net45\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.9.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.9.2\lib\net45\Unity.Container.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Common.cs" />
     <Compile Include="App\Core\UserExport.cs" />
-    <Compile Include="App\Event\Event_AppInitialize.cs" />
+    <Compile Include="App\Event\Event_AppMain.cs" />
     <Compile Include="App\Event\Event_AppStatus.cs" />
     <Compile Include="App\Event\Event_DiscussMessage.cs" />
     <Compile Include="App\Event\Event_FriendMessage.cs" />
     <Compile Include="App\Event\Event_GroupMessage.cs" />
-    <Compile Include="App\Event\Event_PrivateMessage.cs" />
+    <Compile Include="App\Event\Event_OtherMessage.cs" />
     <Compile Include="App\Event\Event_UserExpand.cs" />
-    <Compile Include="App\Model\AppInfoEventArgs.cs" />
-    <Compile Include="App\Model\AppInitializeEventArgs.cs" />
+    <Compile Include="App\Interface\IEvent_AppStatus.cs" />
+    <Compile Include="App\Interface\IEvent_DiscussMessage.cs" />
+    <Compile Include="App\Interface\IEvent_FriendMessage.cs" />
+    <Compile Include="App\Interface\IEvent_GroupMessage.cs" />
+    <Compile Include="App\Interface\IEvent_OtherMessage.cs" />
+    <Compile Include="App\Interface\IEvent_UserExpand.cs" />
     <Compile Include="App\Model\DiscussMessageEventArgs.cs" />
     <Compile Include="App\Model\FileUploadMessageEventArgs.cs" />
     <Compile Include="App\Model\FriendAddRequestEventArgs.cs" />
