@@ -1,9 +1,10 @@
 ﻿using BackRunner.QQBot.BotConsole;
-using Native.Csharp.Sdk.Cqp.Api;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Native.Csharp.Sdk.Cqp.Api;
+using Unity;
 
 namespace Native.Csharp.App
 {
@@ -39,6 +40,11 @@ namespace Native.Csharp.App
         /// <summary>
 		/// 插件内共用的静态控制台窗体
 		/// </summary>
+
+		/// <summary>
+		/// 获取或设置当前 App 使用的依赖注入容器实例
+		/// </summary>
+		public static IUnityContainer UnityContainer { get; set; }
         public static ConsoleWindow ConsoleWindow { get; set; }
 	}
 }
