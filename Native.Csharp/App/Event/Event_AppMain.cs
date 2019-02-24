@@ -19,7 +19,7 @@ namespace Native.Csharp.App.Event
 		/// <param name="builder"></param>
 		public static void Registbackcall (IUnityContainer container)
 		{
-			#region --回调注入--
+			#region --回调注入
 			// 注册 Event_AppStatus 类, 继承于 IEvent_AppStatus
 			container.RegisterType<IEvent_AppStatus, Event_AppStatus> ();
 
@@ -107,6 +107,14 @@ namespace Native.Csharp.App.Event
 			// 在此分发已经注册的回调类型, 解析完毕后分发到导出的事件进行注册
 			IEvent_UserExpand userExpand = container.Resolve<IEvent_UserExpand> ();
 			UserExport.UserOpenConsole += userExpand.OpenConsoleWindow;
+		}
+
+		/// <summary>
+		/// 当前回调事件的注册和分发完成之后将调用此方法
+		/// </summary>
+		public static void Initialize ()
+		{
+
 		}
 	}
 }
